@@ -1,1 +1,1 @@
-# exponenta.github.io
+# exponenta
