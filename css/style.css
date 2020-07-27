@@ -23,6 +23,7 @@ body {
     height: 96px;
 }
 .text-center{
+    cursor: default;
     margin-left: auto; 
     margin-right: auto; 
     padding-right: 55px;
@@ -72,9 +73,9 @@ body {
     padding: 5px 5px;
 }
 .locked-button{
-    cursor: auto;
+    cursor: default;
     background: #7C213C;
-    border: 3px solid #FF0038;
+    border: 2px solid #FF0038;
 }
 .button-text{
     font-family: Roboto;
@@ -125,6 +126,7 @@ body {
     justify-content: flex-end;
 }
 .about-text{
+    cursor: default;
     padding-left: 40px;
     font-family: Roboto;
     font-style: normal;
@@ -233,6 +235,10 @@ body {
     align-items: flex-start;
     justify-content: space-between;
 }
+.logodown{
+    margin-left: 60px; 
+    padding-top: 0px;
+}
 .link{
     margin-bottom: 15px;
     margin-right: 30px;
@@ -326,6 +332,10 @@ body {
     .numtxt{
         margin: 0px 4px;
     }
+    .about-text{
+        font-size: 26px;
+        line-height: 28px;
+    }
 }
 @media(max-width: 768px){
     .container{
@@ -340,7 +350,7 @@ body {
         font-size: 55px;
     }
     .news{
-        height: 240px;;
+        height: 240px;
     }
     .button{
         margin-bottom: 10px;
@@ -389,6 +399,10 @@ body {
         display: flex;
         align-items: center;
         flex-direction: column;
+    }
+    .about-text{
+        font-size: 22px;
+        line-height: 24px;
     }
 }
 @media(max-width: 578px){
@@ -459,5 +473,102 @@ body {
     .imlink{
         height: 20px;
         width: 20px;
+    }
+    .about-text{
+        font-size: 18px;
+        line-height: 20px;
+    }
+}
+@media(max-width: 480px){
+    .container{
+        width: 90%;
+    }
+    .logo{
+        padding-left: 20px;
+        width: 62px;
+        height: 60px;
+    }
+    .text-center{
+        padding-left: 20px;
+        font-size: 50px;
+    }
+    .button-text{
+        font-size: 8px;
+        line-height: 10px;
+    }
+    .button{
+        padding: 3px 2px;
+        margin-right: 2px;
+        border: 1px solid #7C213C;
+    }
+    .locked-button{
+        border: 1px solid #FF0038;
+    }
+    .news{
+        height: 200px;
+    }
+    .news-title{
+        padding-left: 25px;
+        line-height: 20px;
+        font-size: 20px;
+    }
+    .middle-text{
+        font-size: 25px;
+        line-height: 20px;
+        padding-left: 15px;
+    }
+    .news-text{
+        font-size: 15px;
+    }
+    .acard{
+        width: 45%;
+        margin-bottom: 15px;    
+    }
+    .img-rating{
+        width: 17px;
+        height: 17px;
+    }
+    .rating{
+        max-width: 27%;
+    }
+    .info-text{
+        font-size: 13px;
+        line-height: 17px;
+        margin: 0px 3px;
+    }
+    .article-list{
+        width: 100%;   
+    }
+    .img-card{ 
+        height: 237px;
+    } 
+    .link{
+        margin-bottom: 7px;
+    }
+    .foo{
+        align-items: center;
+    }
+    .logodown{
+        margin-left: 30px; 
+        padding-top: 0px;
+    }
+    .contact{
+        margin-left: 50px;
+    }
+    .links{
+        margin-top: 15px;
+        margin-left: 60px;
+    }
+    .imlink{
+        height: 17px;
+        width: 17px;
+    }
+    .fotext{
+        font-size: 11px;
+        line-height: 12px;
+    }
+    .about-text{
+        font-size: 16px;
+        line-height: 18px;
     }
 }
