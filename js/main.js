@@ -120,7 +120,7 @@ function createNews(news){
   const card = `
   <section class="swiper-slide new" style=" 
   cursor: pointer;
-  background: url(../preview_img/news/${image}) no-repeat;
+  background: url(preview_img/news/${image}) no-repeat;
   background-size: 100% 100%;
   border-radius: 50px;
   ">
@@ -256,60 +256,48 @@ function openArticle(){
 
   
 }
+function setSwipe(name){
+  var sl = 0;
+  if(window.screen.width>480){
+    sl = 3;}
+  else{
+    sl = 2;}
+  return new Swiper(name,{
+    autoplay: {delay: 3000,},
+    spaceBetween: 0,
+    sleidesPerColumn: 1,
+    slidesPerView: sl,
+    disableOnInteraction: true},
+  );
+}
 
- 
-
+    console.log(window.screen.width);
 function initSwipe(){
-const newsSwiper = new Swiper('.news-swiper',{
-  autoplay: {delay: 3000,},
-  sleidesPerColumn: 1,
-  disableOnInteraction: false,
-});
-if(window.screen.width>480){
-    const artSwiper1 = new Swiper('.sw1',{
+    const newsSwiper = new Swiper('.news-swiper',{
       autoplay: {delay: 3000,},
-      spaceBetween: 0,
-      slidesPerView: 3,
-      disableOnInteraction: true,
+      sleidesPerColumn: 1,
+      disableOnInteraction: false,
     });
-    const artSwiper2 = new Swiper('.sw2',{
-      autoplay: {delay: 3000,},
-      spaceBetween: 0,
-      slidesPerView: 3,
-      disableOnInteraction: true,
-    });
-}
-else{
-  const artSwiper1 = new Swiper('.sw1',{
-    autoplay: {delay: 3000,},
-    spaceBetween: 0,
-    slidesPerView: 2,
-    disableOnInteraction: true,
-  });
-  const artSwiper2 = new Swiper('.sw2',{
-    autoplay: {delay: 3000,},
-    spaceBetween: 0,
-    slidesPerView: 2,
-    disableOnInteraction: true,
-  });
-}
+    const artSwiper1 = setSwipe('.sw1');
+    const artSwiper2 = setSwipe('.sw2');
+    artSwiper1.params.slidesPerView = "3";
+    artSwiper2.params.slidesPerView = "3";
 
 
-news.addEventListener("mouseover",function() {
-  newsSwiper.autoplay.stop();});
-news.addEventListener("mouseout",function() {
-  newsSwiper.autoplay.start();});
-sw1.addEventListener("mouseover",function() {
-  artSwiper1.autoplay.stop();});
-sw1.addEventListener("mouseout",function() {
-  artSwiper1.autoplay.start();});
-sw2.addEventListener("mouseover",function() {
-  artSwiper2.autoplay.stop();});
-sw2.addEventListener("mouseout",function() {
-  artSwiper2.autoplay.start();});
+    news.addEventListener("mouseover",function() {
+      newsSwiper.autoplay.stop();});
+    news.addEventListener("mouseout",function() {
+      newsSwiper.autoplay.start();});
+    sw1.addEventListener("mouseover",function() {
+      artSwiper1.autoplay.stop();});
+    sw1.addEventListener("mouseout",function() {
+      artSwiper1.autoplay.start();});
+    sw2.addEventListener("mouseover",function() {
+      artSwiper2.autoplay.stop();});
+    sw2.addEventListener("mouseout",function() {
+      artSwiper2.autoplay.start();});
 }
 
-console.log(window.screen.width);
 async function init(){
   const dataIssues = await getData('./db/issues.json');
   await forDataIssues(dataIssues);
