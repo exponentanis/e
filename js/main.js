@@ -48,7 +48,7 @@ function createIssues(issue){
   const card = `
   <section class="swiper-slide card" data-info = "${pdfName}">
    <div class="card-container">
-        <img src="../preview_img/issues/${imageName}" alt="logo" class="img-card">
+        <img src="preview_img/issues/${imageName}" alt="logo" class="img-card">
         <div class="info">
           <div class="rating"> 
                 <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
@@ -76,7 +76,7 @@ async function createArticles(article, i){
   const card = `
   <section class="swiper-slide card forlist" data-info = "${pdfName}">
     <div class="card-container forcont">
-        <img src="../preview_img/articles/${imageName}" alt="logo" class="img-card getimg" >
+        <img src="preview_img/articles/${imageName}" alt="logo" class="img-card getimg" >
         <div class="info">
           <div class="rating"> 
                 <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
