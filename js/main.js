@@ -265,7 +265,6 @@ function setSwipe(name){
   return new Swiper(name,{
     autoplay: {delay: 3000,},
     spaceBetween: 0,
-    sleidesPerColumn: 1,
     slidesPerView: sl,
     disableOnInteraction: true},
   );
@@ -280,8 +279,6 @@ function initSwipe(){
     });
     const artSwiper1 = setSwipe('.sw1');
     const artSwiper2 = setSwipe('.sw2');
-    artSwiper1.params.slidesPerView = "3";
-    artSwiper2.params.slidesPerView = "3";
 
 
     news.addEventListener("mouseover",function() {
