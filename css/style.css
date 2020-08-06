@@ -59,6 +59,9 @@ body {
     align-items: flex-start;
     flex-direction: column;
 }
+.menu-center{
+    margin: auto;    
+}
 
 .button{
     display: flex;
@@ -71,6 +74,7 @@ body {
     margin-right: 5px;
     border-radius: 10px;
     padding: 5px 5px;
+    text-decoration: blink;
 }
 .locked-button{
     cursor: default;
@@ -81,8 +85,8 @@ body {
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 15px;
+    line-height: 17px;
     color: #FFFFFF;
 }
 
@@ -129,8 +133,8 @@ body {
     cursor: default;
     padding-left: 40px;
     font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
+    font-style: italic;
+    font-weight: normal;
     font-size: 30px;
     line-height: 32px;
     color: #C4C4C4;
@@ -175,6 +179,7 @@ body {
     padding: 5px 5px;
     background: #565661;
 }
+
 .info-text{
     cursor: default;
     font-family: Roboto;
@@ -184,23 +189,42 @@ body {
     line-height: 25px;
     color:#FFFFFF;
     overflow: hidden;
+    display: table-cell; 
+    vertical-align: middle; 
+    text-align: center; 
+    overflow-wrap: break-word;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
+}
+.tinner{
+    width: 135px;
 }
 .rating{
     cursor: pointer;
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between;
     flex-direction: row;
-    padding: 3px 0px;
+    padding: 3px 2px;
     background: #80808F;
     border-radius: 25px; 
     max-width: 22%;
+    
+}
+.numtxt{
+    overflow: visible;
 }
 .img-rating{
+
     width: 25px;
     height: 25px;
+}
+.pressed-like{
+    background: #00ADEF; 
+}
+.pressed-dislike{
+
+    background: #C0392B;
 }
 .article-list{
     width: 115%;
@@ -252,16 +276,15 @@ body {
     height: 30px;
     padding-right: 20px;
 }
-.numtxt{
-    margin: 0px 6px;
-}
 .hide{
     display: none;
 }
 .space-bottom{
     margin-bottom: 45px;
 }
-
+.return-button{
+    order: 10;
+}
 
 @media (max-width: 1366px){
     .container{
@@ -296,8 +319,8 @@ body {
         padding: 4px 4px;
     }
     .button-text{
-        font-size: 12px;
-        line-height: 12px;
+        font-size: 13px;
+        line-height: 15px;
     }
     .news-title{
         font-size: 25px;
@@ -325,13 +348,14 @@ body {
         width: 16px;
         height: 16px;
     }
+    .numtxt{
+        margin: 0px 0px;
+    }
     .info-text{
         font-size: 16px;
         line-height: 16px;
     }
-    .numtxt{
-        margin: 0px 4px;
-    }
+
     .about-text{
         font-size: 26px;
         line-height: 28px;
@@ -445,7 +469,7 @@ body {
         margin: 0px 2px;
     }
     .numtxt{
-        margin: 0px 3px;
+        margin: 0px 0px;
     }
     .article-list{
         width: 110%;   
@@ -536,6 +560,9 @@ body {
         line-height: 17px;
         margin: 0px 3px;
     }
+    .numtxt{
+        margin: 0px 0px;
+    }
     .article-list{
         width: 100%;   
     }
@@ -568,13 +595,14 @@ body {
         line-height: 12px;
     }
     .about-text{
-        font-size: 16px;
-        line-height: 18px;
+        font-size: 14px;
+        line-height: 16px;
     }
+
 }
 @media(max-width: 360px){
    .swiper-container{
-       width: 95%;
+       width: 102%;
    }
    .text-center{
     font-size: 45px;

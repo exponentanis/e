@@ -16,7 +16,7 @@ const articles = document.querySelector('.articles');
 const about = document.querySelector('.about');
 const howto = document.querySelector('.howto');
 const articleList = document.querySelector('.article-list');
-const cardNum = articleList.getElementsByClassName('card').length;
+
 const newsCards = document.querySelector('.swiper-wrapper');
 const issuesCards = sw1.querySelector('.swiper-wrapper');
 const articlesCards = sw2.querySelector('.swiper-wrapper');
@@ -25,12 +25,15 @@ const releaseCard = issuesCards.querySelectorAll('.img-card');
 const articleCard = articlesCards.querySelectorAll('.img-card');
 const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
+const returnButton = document.querySelector(".return-button");
+const rating = document.querySelectorAll('.rating');
 
 const pdfArticle = document.querySelector(".pdf-articles");
-
-
 let clicked = button;
 var art = null;
+
+//let login = localStorage.getItem('delka');
+//localStorage.setItem('exponenta', '001')
 
 async function getData(url){
   const response = await fetch(url);
@@ -50,12 +53,12 @@ function createIssues(issue){
    <div class="card-container">
         <img src="preview_img/issues/${imageName}" alt="logo" class="img-card">
         <div class="info">
-          <div class="rating"> 
+          <div class="rating like"> 
                 <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
                 <div class="info-text numtxt" style="cursor: pointer;">${likes}</div>
           </div>
-          <div class="info-text">${name}</div>
-          <div class="rating">
+          <span class="info-text">${name}</span>
+          <div class="rating dislike">
               <div class="info-text numtxt"style="cursor: pointer;">${dislikes}</div>
               <img src="img/dislike.png" alt="like" class="img-rating"style="padding-right: 0px;">
           </div>    
@@ -78,12 +81,12 @@ async function createArticles(article, i){
     <div class="card-container forcont">
         <img src="preview_img/articles/${imageName}" alt="logo" class="img-card getimg" >
         <div class="info">
-          <div class="rating"> 
+          <div class="rating like"> 
                 <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
                 <div class="info-text numtxt" style="cursor: pointer; ">${likes}</div>
           </div>
-          <div class="info-text">${name}</div>
-          <div class="rating">
+          <div class="info-text titletxt">${name}</div>
+          <div class="rating dislike">
               <div class="info-text numtxt"style="cursor: pointer;">${dislikes}</div>
               <img src="img/dislike.png" alt="like" class="img-rating"style="padding-right: 0px;">
           </div>    
@@ -102,6 +105,8 @@ async function createArticles(article, i){
   const cont = document.querySelectorAll('.forcont');
   cont.forEach(function(cont){
     cont.classList.remove("card-container");
+    const inText = cont.querySelector('.titletxt');
+    inText.classList.add("tinner");
   });
     
   }
@@ -109,6 +114,24 @@ async function createArticles(article, i){
   if(i<6){
   articlesCards.insertAdjacentHTML('beforeend', card);
   }
+  const cardNum = articleList.getElementsByClassName('card').length;
+  //prevent neporadok
+  if (cardNum %4 !=0){
+  for(var i=0; i<4-cardNum %4; i++){
+    const addcard = document.createElement('div');
+    addcard.className = 'transparent';
+    addcard.insertAdjacentHTML('beforeend', `
+    <div class="acard ">
+
+    </div> 
+    `);
+    articleList.insertAdjacentElement('beforeend', addcard);
+  }
+  }
+
+
+
+
 }
 async function forDataNews(data){
   data.forEach(function callback(value, iter){
@@ -187,7 +210,9 @@ function hideAll(){
   howto.classList.add('hide');
   menu.classList.remove('vertical');
   menu.classList.add('menu');
+  menu.classList.add('menu-center');
   articleList.classList.add('hide');
+  returnButton.classList.add('hide');
   clearPdf();
 }
 function changePage(){
@@ -210,6 +235,7 @@ function changePage(){
         initSwipe();
         break;
       case 'button-about':
+        menu.classList.remove('menu-center');
         about.classList.remove('hide');
         break;
       case 'button-news':
@@ -222,8 +248,31 @@ function changePage(){
         menu.classList.remove('menu');
         break;  
       case 'button-howto':
+        menu.classList.remove('menu-center');
         howto.classList.remove('hide');
         break;  
+      case 'button-offer':
+        news.classList.remove('hide');
+        releases.classList.remove('hide');
+        articles.classList.remove('hide');
+        initSwipe();
+        setTimeout(function() {
+          clicked.classList.remove("locked-button");
+          clicked = button;
+          button.classList.add("locked-button");  
+        }, 200);
+              
+        break;
+      case 'return-button':
+        news.classList.remove('hide');
+        releases.classList.remove('hide');
+        articles.classList.remove('hide');
+        initSwipe();
+        clicked.classList.remove("locked-button");
+        clicked = button;
+        button.classList.add("locked-button");
+        window.scrollTo(0, 0);
+        break;
     }
   }
 }
@@ -236,8 +285,8 @@ function openRelease(){
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
-  clicked.style.background = '#FF0038';
-  clicked.style.border = '3px solid #7C213C';
+  clicked.classList.remove("locked-button");
+  returnButton.classList.remove('hide');
   clicked = null;
 
 }
@@ -250,12 +299,72 @@ function openArticle(){
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
- clicked.style.background = '#FF0038';
-  clicked.style.border = '3px solid #7C213C';
+ clicked.classList.remove("locked-button");
+ returnButton.classList.remove('hide');
   clicked = null;
 
   
 }
+function renderRating(card, like, dislike){
+
+
+  
+  `like.textContent = '';
+  dislike.textContent = '';
+  const ike = 
+    <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
+    <div class="info-text numtxt" style="cursor: pointer; ">${card.likes}</div>
+  
+  const dike = 
+    <div class="info-text numtxt"style="cursor: pointer;">${card.dislikes}</div>
+    <img src="img/dislike.png" alt="like" class="img-rating"style="padding-right: 0px;">
+  
+  like.insertAdjacentHTML('beforeend', ike)
+  dislike.insertAdjacentHTML('beforeend', dike)`
+
+
+
+
+}
+
+
+function setRate(){
+  const target = event.target;
+  const rate = target.closest('.rating');
+  const inf = target.closest('.info');
+  const card = target.closest('.card');
+  const clas = rate.classList[1];  
+  let oppos = null;
+  const {pdfName, imageName, name, likes, dislikes} = card;
+  
+  switch(clas){
+    case 'like':
+        oppos = inf.querySelector('.dislike');
+        if (oppos.classList[2]== "pressed-dislike"){
+           oppos.classList.remove("pressed-dislike"); 
+           console.log(oppos);
+          // card.dislikes --;
+        }
+        rate.classList.add("pressed-like"); 
+        //likes ++;
+        
+        renderRating(card, rate, oppos);
+        break;
+    case 'dislike':
+        oppos = inf.querySelector('.like');
+        if (oppos.classList[2]== "pressed-like"){
+          oppos.classList.remove("pressed-like"); 
+          console.log(oppos);
+          //likes --;
+       }
+        rate.classList.add("pressed-dislike");
+        //card.dislikes ++;
+        renderRating(card, oppos, rate);
+        break;    
+  }
+
+}
+
 function setSwipe(name){
   var sl = 0;
   if(window.screen.width>480){
@@ -270,7 +379,6 @@ function setSwipe(name){
   );
 }
 
-    console.log(window.screen.width);
 function initSwipe(){
     const newsSwiper = new Swiper('.news-swiper',{
       autoplay: {delay: 3000,},
@@ -303,23 +411,17 @@ async function init(){
   const dataNews = await getData('./db/news.json');
   await forDataNews(dataNews);
 
+  console.log(dataArticles);
+  dataArticles[0].likes = 1;
+  console.log(dataArticles);
+  
 
-
- if (cardNum %4 !=0){
-    for(var i=0; i<4-cardNum %4; i++){
-      const addcard = document.createElement('div');
-      addcard.className = 'transparent';
-      addcard.insertAdjacentHTML('beforeend', `
-      <div class="acard ">
-
-      </div> 
-      `);
-      articleList.insertAdjacentElement('beforeend', addcard);
-    }
-  }
   const releaseCard = issuesCards.querySelectorAll('.img-card');
   const articleCard = articlesCards.querySelectorAll('.img-card');
   const articleCCdo = articleList.querySelectorAll('.img-card');
+  const rating = document.querySelectorAll('.rating');
+
+
 
 
   buttons.forEach(function(item){
@@ -334,7 +436,9 @@ async function init(){
   articleCCdo.forEach(function(item){
     item.addEventListener("click", openArticle);
   });
-
+  rating.forEach(function(item){
+    item.addEventListener("click", setRate);
+  });
 
   initSwipe();
 }
