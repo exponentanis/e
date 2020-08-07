@@ -146,7 +146,7 @@ function createNews(news){
 function renderPdfArticle(url, canvasContainer){
         async function renderPage(page, width){
             console.log(width);
-            var viewport = page.getViewport(3*width / page.getViewport(1.0).width);
+            var viewport = page.getViewport(6*width / page.getViewport(1.0).width);
             var canvas = document.createElement('canvas');
             var child = art.appendChild(canvas);
             child.classList.add("page");
@@ -158,7 +158,7 @@ function renderPdfArticle(url, canvasContainer){
             };
             canvas.height = viewport.height;
             canvas.width = viewport.width;
-            canvas.style.width = Math.floor(viewport.width/4) + 'pt';
+            canvas.style.width = Math.floor(viewport.width/8) + 'pt';
             page.render(renderContext);         
           }
     pdfjsLib.disableWorker = true;
