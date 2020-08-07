@@ -156,10 +156,10 @@ function createNews(news){
 
 
 //fuck yeaaaaaaaaaaaaaaaaaaah!
-function renderPdf(url, canvasContainer){
+function renderPdfArticle(url, canvasContainer){
         async function renderPage(page, width){
             console.log(width);
-            var viewport = page.getViewport(width / page.getViewport(1.0).width);
+            var viewport = page.getViewport(2*width / page.getViewport(1.0).width);
             var canvas = document.createElement('canvas');
             var child = art.appendChild(canvas);
             child.classList.add("page");
@@ -171,6 +171,8 @@ function renderPdf(url, canvasContainer){
             };
             canvas.height = viewport.height;
             canvas.width = viewport.width;
+            canvas.style.width = "100%";
+            canvas.style.height = "100%";
             page.render(renderContext);         
           }
     pdfjsLib.disableWorker = true;
@@ -196,6 +198,52 @@ function renderPdf(url, canvasContainer){
 
       })
   }
+function renderPdfRelease(url, canvasContainer){
+  async function renderPage(page, width){
+    var viewport = page.getViewport(width / (2*page.getViewport(1.0).width));
+    var canvas = document.createElement('canvas');
+    var child = art.appendChild(canvas);
+    child.classList.add("page");
+    var context = canvas.getContext("2d");
+
+    var renderContext = {
+              canvasContext: context,
+              viewport: viewport
+    };
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    page.render(renderContext);         
+  }
+  pdfjsLib.disableWorker = true;
+  pdfjsLib.getDocument(url).then(async function(doc){
+  var div = document.createElement('div');
+  art = canvasContainer.appendChild(div);
+  var num = doc._pdfInfo.numPages+1;
+  art.classList.add("pdf-articles");
+  var positionInfo = art.getBoundingClientRect();
+  var width =  positionInfo.width;
+  async function loop(doc){
+  await doc.getPage(1).then( async function(page){
+    await renderPage(page, width*2);
+    });
+    const pdfArticle = document.querySelector(".pdf-articles");
+  for (var i=2;i<num-1;i++){
+        await doc.getPage(i).then( async function(page){
+        await renderPage(page, width);
+        });
+        const pdfArticle = document.querySelector(".pdf-articles");
+        if (!pdfArticle){
+          break;
+        }
+    }
+  await doc.getPage(num-1).then( async function(page){
+    await renderPage(page, width*2);
+    });
+  }
+  loop(doc);
+
+  })
+}
 function clearPdf(){
       const pdfArticle = document.querySelector(".pdf-articles");
       if (pdfArticle){
@@ -281,7 +329,7 @@ function openRelease(){
   const card = target.closest('.card');
   const info = card.dataset.info.split(',');
   const [pdfName] = info;
-  renderPdf(`./pdfs/issues/${pdfName}`, main);
+  renderPdfArticle(`./pdfs/issues/${pdfName}`, main);
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
@@ -295,7 +343,7 @@ function openArticle(){
   const card = target.closest('.card');
   const info = card.dataset.info.split(',');
   const [pdfName] = info;
-  renderPdf(`./pdfs/articles/${pdfName}`, main);
+  renderPdfArticle(`./pdfs/articles/${pdfName}`, main);
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
@@ -411,8 +459,6 @@ async function init(){
   const dataNews = await getData('./db/news.json');
   await forDataNews(dataNews);
 
-  console.log(dataArticles);
-  dataArticles[0].likes = 1;
   console.log(dataArticles);
   
 
