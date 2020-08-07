@@ -114,20 +114,7 @@ async function createArticles(article, i){
   if(i<6){
   articlesCards.insertAdjacentHTML('beforeend', card);
   }
-  const cardNum = articleList.getElementsByClassName('card').length;
-  //prevent neporadok
-  if (cardNum %4 !=0){
-  for(var i=0; i<4-cardNum %4; i++){
-    const addcard = document.createElement('div');
-    addcard.className = 'transparent';
-    addcard.insertAdjacentHTML('beforeend', `
-    <div class="acard ">
 
-    </div> 
-    `);
-    articleList.insertAdjacentElement('beforeend', addcard);
-  }
-  }
 
 
 
@@ -159,7 +146,7 @@ function createNews(news){
 function renderPdfArticle(url, canvasContainer){
         async function renderPage(page, width){
             console.log(width);
-            var viewport = page.getViewport(2*width / page.getViewport(1.0).width);
+            var viewport = page.getViewport(3*width / page.getViewport(1.0).width);
             var canvas = document.createElement('canvas');
             var child = art.appendChild(canvas);
             child.classList.add("page");
@@ -171,8 +158,7 @@ function renderPdfArticle(url, canvasContainer){
             };
             canvas.height = viewport.height;
             canvas.width = viewport.width;
-            canvas.style.width = "100%";
-            canvas.style.height = "100%";
+            canvas.style.width = Math.floor(viewport.width/4) + 'pt';
             page.render(renderContext);         
           }
     pdfjsLib.disableWorker = true;
@@ -460,8 +446,25 @@ async function init(){
   await forDataNews(dataNews);
 
   console.log(dataArticles);
-  
 
+
+  //prevent neporadok
+  const cardNum = articleList.getElementsByClassName('card').length;
+
+  if (cardNum %4 !=0){
+  for(var i=0; i<4-cardNum%4; i++){
+    const addcard = document.createElement('div');
+    addcard.className = 'transparent';
+    addcard.insertAdjacentHTML('beforeend', `
+    <div class="acard ">
+
+    </div> 
+    `);
+    articleList.insertAdjacentElement('beforeend', addcard);
+  }
+  }
+
+  
   const releaseCard = issuesCards.querySelectorAll('.img-card');
   const articleCard = articlesCards.querySelectorAll('.img-card');
   const articleCCdo = articleList.querySelectorAll('.img-card');
