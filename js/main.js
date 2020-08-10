@@ -61,7 +61,6 @@ function createIssues(issue){
   
   const {name} = issue;
 
-  preRender(`./pdfs/issues/${name}.pdf`);
 
   const card = `
   <section class="swiper-slide card" data-info = "${name}">
@@ -90,7 +89,6 @@ async function forDataArticles(data){
 async function createArticles(article, i){
   const {name} = article;
 
-  preRender(`./pdfs/articles/${name}.pdf`);
 
   const card = `
   <section class="swiper-slide card forlist" data-info = "${name}">
@@ -149,9 +147,6 @@ function createNews(news){
   `;
   newsCards.insertAdjacentHTML('beforeend', card);
 }
-function preRender(item){
-  pdfjsLib.getDocument(item);
-}
 //fuck yeaaaaaaaaaaaaaaaaaaah!
 function renderPdfArticle(url, canvasContainer){
         async function renderPage(page, width){
@@ -172,26 +167,13 @@ function renderPdfArticle(url, canvasContainer){
             page.render(renderContext);         
           }
     pdfjsLib.disableWorker = true;
-    pdfjsLib.getDocument(url).then(async function(doc){
 
-          let pdfArticle = document.querySelectorAll(".pdf-articles");
-          if(pdfArticle){
-            pdfArticle.forEach(function(item){
-              item.parentNode.removeChild(item)
-            });
-          }
+    var div = document.createElement('div');
+    art = canvasContainer.appendChild(div);
+    art.classList.add("pdf-articles");
 
-
-          var div = document.createElement('div');
-          art = canvasContainer.appendChild(div);
-          var num = doc._pdfInfo.numPages+1;
-
-          let pdff = document.querySelector(".pdf-articles");
-          if (pdff){
-            pdff.parentNode.removeChild(pdff);
-          }
-
-          art.classList.add("pdf-articles");
+    pdfjsLib.getDocument(url).then(async function(doc){    
+          var num = doc._pdfInfo.numPages+1;          
           var positionInfo = art.getBoundingClientRect();
           var width =  positionInfo.width;
           async function loop(doc){
