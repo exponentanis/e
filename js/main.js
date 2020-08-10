@@ -1,6 +1,9 @@
 
 'use strict';
 
+console.log("я здесь");
+
+
 const scroll = document.querySelector('.scroll');
 const news = document.querySelector('.news');
 const sw1 = document.querySelector('.sw1');
