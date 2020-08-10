@@ -167,6 +167,8 @@ function renderPdfArticle(url, canvasContainer){
           }
     pdfjsLib.disableWorker = true;
     pdfjsLib.getDocument(url).then(async function(doc){
+
+
           var div = document.createElement('div');
           art = canvasContainer.appendChild(div);
           var num = doc._pdfInfo.numPages+1;
@@ -196,7 +198,7 @@ function renderPdfArticle(url, canvasContainer){
 
 function clearPdf(){
       const art = document.querySelector(".pdf-articles");
-      if (pdfArticle){
+      if (art){
       art.parentNode.removeChild(art);
       }
   }
