@@ -167,34 +167,35 @@ function renderPdfArticle(url, canvasContainer){
           }
     pdfjsLib.disableWorker = true;
     pdfjsLib.getDocument(url).then(async function(doc){
-      var div = document.createElement('div');
-      art = canvasContainer.appendChild(div);
-      var num = doc._pdfInfo.numPages+1;
-      art.classList.add("pdf-articles");
-      var positionInfo = art.getBoundingClientRect();
-      var width =  positionInfo.width;
-      async function loop(doc){
-        for (var i=1;i<num;i++){
-              await doc.getPage(i).then( async function(page){
-              await renderPage(page, width);
-              });
-              if(i==num-1){
-                octo.classList.add('hide');
-              }
-              const pdfArticle = document.querySelector(".pdf-articles");
-              if (!pdfArticle){
-                octo.classList.add('hide');
-                break;
+          var div = document.createElement('div');
+          art = canvasContainer.appendChild(div);
+          var num = doc._pdfInfo.numPages+1;
+          art.classList.add("pdf-articles");
+          var positionInfo = art.getBoundingClientRect();
+          var width =  positionInfo.width;
+          async function loop(doc){
+            for (var i=1;i<num;i++){
+                  await doc.getPage(i).then( async function(page){
+                  await renderPage(page, width);
+                  });
+                  if(i==num-1){
+                    octo.classList.add('hide');
+                  }
+                  const pdfArticle = document.querySelector(".pdf-articles");
+                  if (!pdfArticle){
+                    octo.classList.add('hide');
+                    break;
+                  }
               }
           }
-      }
-      loop(doc);
+          loop(doc);
 
+           
       })
   }
 
 function clearPdf(){
-      const pdfArticle = document.querySelector(".pdf-articles");
+      const art = document.querySelector(".pdf-articles");
       if (pdfArticle){
       art.parentNode.removeChild(art);
       }
@@ -212,6 +213,7 @@ function hideAll(){
   returnButton.classList.add('hide');
   octo.classList.add('hide');
   console.log(octo.classList);
+  
   clearPdf();
 }
 function changePage(){
@@ -283,7 +285,7 @@ async function openRelease(){
   menu.classList.add('vertical');
   menu.classList.remove('menu');
   clicked.classList.remove("locked-button");
-  ;
+  
   returnButton.classList.remove('hide');
   clicked = null;
 
