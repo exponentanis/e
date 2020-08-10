@@ -210,6 +210,7 @@ function hideAll(){
   menu.classList.add('menu-center');
   articleList.classList.add('hide');
   returnButton.classList.add('hide');
+  octo.classList.add('hide');
   clearPdf();
 }
 function changePage(){
