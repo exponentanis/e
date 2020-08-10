@@ -211,6 +211,7 @@ function hideAll(){
   articleList.classList.add('hide');
   returnButton.classList.add('hide');
   octo.classList.add('hide');
+  console.log(octo.classList);
   clearPdf();
 }
 function changePage(){
