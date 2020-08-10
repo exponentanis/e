@@ -149,7 +149,8 @@ function createNews(news){
 }
 //fuck yeaaaaaaaaaaaaaaaaaaah!
 function renderPdfArticle(url, canvasContainer){
-        async function renderPage(page, width){
+    console.log('strart render');
+    async function renderPage(page, width){
             console.log(width);
             var viewport = page.getViewport(4*width / page.getViewport(1.0).width);
             var canvas = document.createElement('canvas');
@@ -165,14 +166,15 @@ function renderPdfArticle(url, canvasContainer){
             canvas.width = viewport.width;
             canvas.style.width = Math.floor(viewport.width/5) + 'pt';
             page.render(renderContext);         
-          }
+    }
     pdfjsLib.disableWorker = true;
 
     var div = document.createElement('div');
     art = canvasContainer.appendChild(div);
     art.classList.add("pdf-articles");
-
-    pdfjsLib.getDocument(url).then(async function(doc){    
+    console.log('set page');
+    pdfjsLib.getDocument(url).then(async function(doc){  
+          console.log('continue render');  
           var num = doc._pdfInfo.numPages+1;          
           var positionInfo = art.getBoundingClientRect();
           var width =  positionInfo.width;
@@ -215,7 +217,6 @@ function hideAll(){
   articleList.classList.add('hide');
   returnButton.classList.add('hide');
   octo.classList.add('hide');
-  console.log(octo.classList);
   
   clearPdf();
 }
@@ -281,6 +282,7 @@ function changePage(){
   }
 }
 async function openRelease(){
+  console.log('start open');  
   const target = event.target;
   const card = target.closest('.card');
   const info = card.dataset.info;
@@ -293,6 +295,7 @@ async function openRelease(){
   clicked = null;
 
   octo.classList.remove('hide');
+  console.log('start func');  
   renderPdfArticle(`./pdfs/issues/${info}.pdf`, main);
   
 }
