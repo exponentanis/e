@@ -1,216 +1,89 @@
 [
     {
-        "pdfName": "Электрохимические эффекты.pdf",
-        "imageName": "Электрохимические эффекты-1.jpg",
-        "name": "Электрохимические эффекты",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Электрохимические эффекты"
     },
     {
-        "pdfName": "Экономика.pdf",
-        "imageName": "Экономика-1.jpg",
-        "name": "Экономика",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Экономика"
     },
     {
-        "pdfName": "Что такое робототехника.pdf",
-        "imageName": "Что такое робототехника-1.jpg",
-        "name": "Что такое робототехника",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Что такое робототехника"
     },
     {
-        "pdfName": "Риторика, хромосомы, витамины и православие.pdf",
-        "imageName": "Риторика, хромосомы, витамины и православие-1.jpg",
-        "name": "Риторика, хромосомы, витамины и православие",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Риторика, хромосомы, витамины и православие"
     },
     {
-        "pdfName": "The Pirats of Carribean.pdf",
-        "imageName": "The Pirats of Carribean-1.jpg",
-        "name": "The Pirats of Carribean",
-        "likes": 0,
-        "dislikes": 15
+        "name": "The Pirats of Carribean"
     },
     {
-        "pdfName": "The Caaspian sea monster",
-        "imageName": "The Caaspian sea monster-1.jpg",
-        "name": "The Caaspian sea monster",
-        "likes": 0,
-        "dislikes": 0
+        "name": "The Caaspian sea monster"
     },
     {
-        "pdfName": "Air Traffic Controllers.pdf",
-        "imageName": "Air Traffic Controllers-1.jpg",
-        "name": "Air Traffic Controllers",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Air Traffic Controllers"
     },
     {
-        "pdfName": "Технологии фиторемедиации почв.pdf",
-        "imageName": "Технологии фиторемедиации почв-1.jpg",
-        "name": "Технологии фиторемедиации почв",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Технологии фиторемедиации почв"
     },
     {
-        "pdfName": "Тесла в Казахстане.pdf",
-        "imageName": "Тесла в Казахстане-1.jpg",
-        "name": "Тесла в Казахстане",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Тесла в Казахстане"
     },
     {
-        "pdfName": "Спуск по Виета.pdf",
-        "imageName": "Спуск по Виета-1.jpg",
-        "name": "Спуск по Виета",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Спуск по Виета"
     },
     {
-        "pdfName": "Скорочтение.pdf",
-        "imageName": "Скорочтение-1.jpg",
-        "name": "Скорочтение",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Скорочтение"
     },
     {
-        "pdfName": "Интервью с Алексом.pdf",
-        "imageName": "Интервью с Алексом-1.jpg",
-        "name": "Интервью с Алексом",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Интервью с Алексом"
     },
     {
-        "pdfName": "Выборы в президенты школы.pdf",
-        "imageName": "Выборы в президенты школы-1.jpg",
-        "name": "Выборы в президенты школы",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Выборы в президенты школы"
     },
     {
-        "pdfName": "Technovation.pdf",
-        "imageName": "Technovation-1.jpg",
-        "name": "Technovation",
-        "likes": 0,
-        "dislikes": 0
-    },
-
-
-
-
-
-
-
-
-
-
-
-    {
-        "pdfName": "Sharing economy platforms and equality.pdf",
-        "imageName": "Sharing economy platforms and equality-1.jpg",
-        "name": "Sharing economy platforms and equality",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Technovation"
     },
     {
-        "pdfName": "Зачем Шрёдингеру кот.pdf",
-        "imageName": "Зачем Шрёдингеру кот-1.jpg",
-        "name": "Зачем Шрёдингеру кот",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Sharing economy platforms and equality"
     },
     {
-        "pdfName": "История науки.pdf",
-        "imageName": "История науки-1.jpg",
-        "name": "История науки",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Зачем Шрёдингеру кот"
     },
     {
-        "pdfName": "Королевы науки.pdf",
-        "imageName": "Королевы науки-1.jpg",
-        "name": "Королевы науки",
-        "likes": 0,
-        "dislikes": 0
+        "name": "История науки"
     },
     {
-        "pdfName": "На каком языке начать программировать.pdf",
-        "imageName": "На каком языке начать программировать-1.jpg",
-        "name": "На каком языке начать программировать",
-        "likes": 0,
-        "dislikes": 15
+        "name": "Королевы науки"
     },
     {
-        "pdfName": "Производящая функция в комбинаторике",
-        "imageName": "Производящая функция в комбинаторике-1.jpg",
-        "name": "Производящая функция в комбинаторике",
-        "likes": 0,
-        "dislikes": 0
+        "name": "На каком языке начать программировать"
     },
     {
-        "pdfName": "Профиль археолога.pdf",
-        "imageName": "Профиль археолога-1.jpg",
-        "name": "Профиль археолога",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Производящая функция в комбинаторике"
     },
     {
-        "pdfName": "Профиль учёного-физика.pdf",
-        "imageName": "Профиль учёного-физика-1.jpg",
-        "name": "Профиль учёного-физика",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Профиль археолога"
     },
     {
-        "pdfName": "Советы для изучения истории.pdf",
-        "imageName": "Советы для изучения истории-1.jpg",
-        "name": "Советы для изучения истории",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Профиль учёного-физика"
     },
     {
-        "pdfName": "Советы для изучения физики.pdf",
-        "imageName": "Советы для изучения физики-1.jpg",
-        "name": "Советы для изучения физики",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Советы для изучения истории"
     },
     {
-        "pdfName": "Удивительный мир материалов.pdf",
-        "imageName": "Удивительный мир материалов-1.jpg",
-        "name": "Удивительный мир материалов",
-        "likes": 0,
-        "dislikes": 15
+        "name": "Советы для изучения физики"
     },
     {
-        "pdfName": "Университеты (2)",
-        "imageName": "Университеты (2)-1.jpg",
-        "name": "Заграничные Университеты 2",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Удивительный мир материалов"
     },
     {
-        "pdfName": "Университеты.pdf",
-        "imageName": "Университеты-1.jpg",
-        "name": "Заграничные Университеты",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Заграничные Университеты 2"
     },
     {
-        "pdfName": "Функционалдық.pdf",
-        "imageName": "Функционалдық-1.jpg",
-        "name": "Функционалдық мақсаттағы отаңдық жаңа тағам өнімдерін жасау",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Заграничные Университеты"
     },
     {
-        "pdfName": "Что такое SAT.pdf",
-        "imageName": "Что такое SAT-1.jpg",
-        "name": "Что такое SAT",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Функционалдық мақсаттағы отаңдық жаңа тағам өнімдерін жасау"
+    },
+    {
+        "name": "Что такое SAT"
     }
 ]

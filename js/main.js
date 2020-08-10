@@ -32,8 +32,16 @@ const pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
 var art = null;
 
-//let login = localStorage.getItem('delka');
-//localStorage.setItem('exponenta', '001')
+const octo = document.querySelector('.octo');
+
+
+let login = localStorage.getItem('exponenta');
+
+if(!login){
+  let login = localStorage.setItem('exponenta', '002');
+}
+
+
 
 async function getData(url){
   const response = await fetch(url);
@@ -47,19 +55,17 @@ async function forDataIssues(data){
   data.forEach(createIssues);
 }
 function createIssues(issue){
-  const {pdfName, imageName, name, likes, dislikes} = issue;
+  const {name} = issue;
   const card = `
-  <section class="swiper-slide card" data-info = "${pdfName}">
+  <section class="swiper-slide card" data-info = "${name}">
    <div class="card-container">
-        <img src="preview_img/issues/${imageName}" alt="logo" class="img-card">
+        <img src="preview_img/issues/${name}-1.jpg" alt="logo" class="img-card">
         <div class="info">
           <div class="rating like"> 
                 <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
-                <div class="info-text numtxt" style="cursor: pointer;">${likes}</div>
           </div>
           <span class="info-text">${name}</span>
           <div class="rating dislike">
-              <div class="info-text numtxt"style="cursor: pointer;">${dislikes}</div>
               <img src="img/dislike.png" alt="like" class="img-rating"style="padding-right: 0px;">
           </div>    
         </div>
@@ -75,19 +81,17 @@ async function forDataArticles(data){
     );
 }
 async function createArticles(article, i){
-  const {pdfName, imageName, name, likes, dislikes} = article;
+  const {name} = article;
   const card = `
-  <section class="swiper-slide card forlist" data-info = "${pdfName}">
+  <section class="swiper-slide card forlist" data-info = "${name}">
     <div class="card-container forcont">
-        <img src="preview_img/articles/${imageName}" alt="logo" class="img-card getimg" >
+        <img src="preview_img/articles/${name}-1.jpg" alt="logo" class="img-card getimg" >
         <div class="info">
           <div class="rating like"> 
                 <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
-                <div class="info-text numtxt" style="cursor: pointer; ">${likes}</div>
           </div>
           <div class="info-text titletxt">${name}</div>
           <div class="rating dislike">
-              <div class="info-text numtxt"style="cursor: pointer;">${dislikes}</div>
               <img src="img/dislike.png" alt="like" class="img-rating"style="padding-right: 0px;">
           </div>    
         </div>
@@ -174,8 +178,12 @@ function renderPdfArticle(url, canvasContainer){
               await doc.getPage(i).then( async function(page){
               await renderPage(page, width);
               });
+              if(i==num-1){
+                octo.classList.add('hide');
+              }
               const pdfArticle = document.querySelector(".pdf-articles");
               if (!pdfArticle){
+                octo.classList.add('hide');
                 break;
               }
           }
@@ -265,58 +273,56 @@ function changePage(){
     }
   }
 }
-function openRelease(){
+async function openRelease(){
   const target = event.target;
   const card = target.closest('.card');
-  const info = card.dataset.info.split(',');
-  const [pdfName] = info;
-  renderPdfArticle(`./pdfs/issues/${pdfName}`, main);
+  const info = card.dataset.info;
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
   clicked.classList.remove("locked-button");
+  ;
   returnButton.classList.remove('hide');
   clicked = null;
 
+  octo.classList.remove('hide');
+  renderPdfArticle(`./pdfs/issues/${info}.pdf`, main);
+  
 }
-function openArticle(){
+async function openArticle(){
   const target = event.target;
   const card = target.closest('.card');
-  const info = card.dataset.info.split(',');
-  const [pdfName] = info;
-  renderPdfArticle(`./pdfs/articles/${pdfName}`, main);
+  const info = card.dataset.info;
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
  clicked.classList.remove("locked-button");
+ 
  returnButton.classList.remove('hide');
-  clicked = null;
+ clicked = null;
 
-  
+ octo.classList.remove('hide');
+
+ renderPdfArticle(`./pdfs/articles/${info}.pdf`, main);
 }
-function renderRating(card, like, dislike){
-
-
+function loadData(name){
   
-  `like.textContent = '';
-  dislike.textContent = '';
-  const ike = 
-    <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
-    <div class="info-text numtxt" style="cursor: pointer; ">${card.likes}</div>
-  
-  const dike = 
-    <div class="info-text numtxt"style="cursor: pointer;">${card.dislikes}</div>
-    <img src="img/dislike.png" alt="like" class="img-rating"style="padding-right: 0px;">
-  
-  like.insertAdjacentHTML('beforeend', ike)
-  dislike.insertAdjacentHTML('beforeend', dike)`
-
-
-
-
+  let item = localStorage.getItem(name.dataset.info);
+  if(item){
+    if(item=='like'){
+      let like = name.querySelector('.like');
+      like.classList.add("pressed-like");
+      let dislike = name.querySelector('.dislike');
+      dislike.classList.remove("pressed-dislike");
+    }
+    if(item=='dislike'){
+      let dislike = name.querySelector('.dislike');
+      dislike.classList.add("pressed-dislike");
+      let like = name.querySelector('.like');
+      like.classList.remove("pressed-like");
+    }
+  }
 }
-
-
 function setRate(){
   const target = event.target;
   const rate = target.closest('.rating');
@@ -324,34 +330,41 @@ function setRate(){
   const card = target.closest('.card');
   const clas = rate.classList[1];  
   let oppos = null;
-  const {pdfName, imageName, name, likes, dislikes} = card;
   
   switch(clas){
     case 'like':
         oppos = inf.querySelector('.dislike');
         if (oppos.classList[2]== "pressed-dislike"){
            oppos.classList.remove("pressed-dislike"); 
-           console.log(oppos);
-          // card.dislikes --;
         }
+        if (rate.classList[2]== "pressed-like"){
+          rate.classList.remove("pressed-like"); 
+          localStorage.removeItem(card.dataset.info)
+       }
+       else{
         rate.classList.add("pressed-like"); 
-        //likes ++;
-        
-        renderRating(card, rate, oppos);
+        localStorage.setItem(card.dataset.info, 'like');
+       }
         break;
     case 'dislike':
         oppos = inf.querySelector('.like');
         if (oppos.classList[2]== "pressed-like"){
           oppos.classList.remove("pressed-like"); 
-          console.log(oppos);
-          //likes --;
        }
+       if (rate.classList[2]== "pressed-dislike"){
+        rate.classList.remove("pressed-dislike"); 
+        localStorage.removeItem(card.dataset.info)
+       }
+       else{
         rate.classList.add("pressed-dislike");
-        //card.dislikes ++;
-        renderRating(card, oppos, rate);
+        localStorage.setItem(card.dataset.info, 'dislike');
+       }
         break;    
   }
-
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(function(item){
+    loadData(item);
+ });
 }
 
 function setSwipe(name){
@@ -400,12 +413,17 @@ async function init(){
   const dataNews = await getData('./db/news.json');
   await forDataNews(dataNews);
 
-  console.log(dataArticles);
+  
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(function(item){
+     loadData(item);
+  });
+  
 
 
   //prevent neporadok
-  const cardNum = articleList.getElementsByClassName('card').length;
-
+  const articleCCdo = articleList.querySelectorAll('.img-card');  
+  const cardNum = articleCCdo.length;
   if (cardNum %4 !=0){
   for(var i=0; i<4-cardNum%4; i++){
     const addcard = document.createElement('div');
@@ -419,10 +437,15 @@ async function init(){
   }
   }
 
+
+
+
+
+ 
   
   const releaseCard = issuesCards.querySelectorAll('.img-card');
   const articleCard = articlesCards.querySelectorAll('.img-card');
-  const articleCCdo = articleList.querySelectorAll('.img-card');
+
   const rating = document.querySelectorAll('.rating');
 
 

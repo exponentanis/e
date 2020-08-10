@@ -1,30 +1,14 @@
 [
     {
-        "pdfName": "exponenta issue 4.pdf",
-        "imageName": "issue 4.jpg",
-        "name": "Выпсук №4",
-        "likes": 15,
-        "dislikes": 0
+        "name": "Выпсук №4"
     },
     {
-        "pdfName": "exponenta issue 3.pdf",
-        "imageName": "issue 3.jpg",
-        "name": "Выпсук №3",
-        "likes": 0,
-        "dislikes": 15
+        "name": "Выпсук №3"
     },
     {
-        "pdfName": "exponenta issue 2.pdf",
-        "imageName": "issue 2.jpg",
-        "name": "Выпсук №2",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Выпсук №2"
     },
     {
-        "pdfName": "exponenta issue 1.pdf",
-        "imageName": "issue 1.jpg",
-        "name": "Выпсук №1",
-        "likes": 0,
-        "dislikes": 0
+        "name": "Выпсук №1"
     }
 ]

@@ -215,7 +215,7 @@ body {
     overflow: visible;
 }
 .img-rating{
-
+    margin: 0px 10px;
     width: 25px;
     height: 25px;
 }
@@ -284,6 +284,10 @@ body {
 }
 .return-button{
     order: 10;
+}
+
+.octo{
+    order: 1;
 }
 
 @media (max-width: 1366px){
@@ -401,6 +405,7 @@ body {
         width: 100%;
     }
     .img-rating{
+        margin: 0px 5px;
         width: 15px;
         height: 15px;
     }
@@ -460,6 +465,7 @@ body {
         margin-bottom: 15px;    
     }
     .img-rating{
+        margin: 0px 2px;
         width: 16px;
         height: 16px;
     }
