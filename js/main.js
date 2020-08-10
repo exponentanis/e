@@ -55,7 +55,11 @@ async function forDataIssues(data){
   data.forEach(createIssues);
 }
 function createIssues(issue){
+  
   const {name} = issue;
+
+  preRender(`./pdfs/issues/${name}.pdf`);
+
   const card = `
   <section class="swiper-slide card" data-info = "${name}">
    <div class="card-container">
@@ -82,6 +86,9 @@ async function forDataArticles(data){
 }
 async function createArticles(article, i){
   const {name} = article;
+
+  preRender(`./pdfs/articles/${name}.pdf`);
+
   const card = `
   <section class="swiper-slide card forlist" data-info = "${name}">
     <div class="card-container forcont">
@@ -118,11 +125,6 @@ async function createArticles(article, i){
   if(i<6){
   articlesCards.insertAdjacentHTML('beforeend', card);
   }
-
-
-
-
-
 }
 async function forDataNews(data){
   data.forEach(function callback(value, iter){
@@ -144,8 +146,9 @@ function createNews(news){
   `;
   newsCards.insertAdjacentHTML('beforeend', card);
 }
-
-
+function preRender(item){
+  pdfjsLib.getDocument(item);
+}
 //fuck yeaaaaaaaaaaaaaaaaaaah!
 function renderPdfArticle(url, canvasContainer){
         async function renderPage(page, width){
