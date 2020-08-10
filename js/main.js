@@ -28,7 +28,7 @@ const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
 
-const pdfArticle = document.querySelector(".pdf-articles");
+let pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
 var art = null;
 
@@ -168,16 +168,21 @@ function renderPdfArticle(url, canvasContainer){
     pdfjsLib.disableWorker = true;
     pdfjsLib.getDocument(url).then(async function(doc){
 
-        
+          let pdfArticle = document.querySelectorAll(".pdf-articles");
+          if(pdfArticle){
+            pdfArticle.forEach(function(item){
+              item.parentNode.removeChild(item)
+            });
+          }
 
 
           var div = document.createElement('div');
           art = canvasContainer.appendChild(div);
           var num = doc._pdfInfo.numPages+1;
 
-          const pdfArticle = document.querySelector(".pdf-articles");
-          if (pdfArticle){
-            pdfArticle.parentNode.removeChild(art);
+          let pdff = document.querySelector(".pdf-articles");
+          if (pdff){
+            pdff.parentNode.removeChild(pdff);
           }
 
           art.classList.add("pdf-articles");
@@ -191,7 +196,7 @@ function renderPdfArticle(url, canvasContainer){
                   if(i==num-1){
                     octo.classList.add('hide');
                   }
-                  const pdfArticle = document.querySelector(".pdf-articles");
+                  let pdfArticle = document.querySelector(".pdf-articles");
                   if (!pdfArticle){
                     octo.classList.add('hide');
                     break;
@@ -205,7 +210,7 @@ function renderPdfArticle(url, canvasContainer){
   }
 
 function clearPdf(){
-      const pdfArticle = document.querySelector(".pdf-articles");
+      let pdfArticle = document.querySelector(".pdf-articles");
       if (pdfArticle){
         pdfArticle.parentNode.removeChild(pdfArticle);
       }
