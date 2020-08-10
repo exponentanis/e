@@ -239,9 +239,12 @@ body {
     margin-bottom: 30px;    
 }
 .pdf-articles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     pointer-events: none;
     width: 100%;
-}  
+} 
 .transparent{
     flex-basis: 21%;
     opacity: 0;
