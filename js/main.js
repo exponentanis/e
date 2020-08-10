@@ -168,10 +168,18 @@ function renderPdfArticle(url, canvasContainer){
     pdfjsLib.disableWorker = true;
     pdfjsLib.getDocument(url).then(async function(doc){
 
+        
+
 
           var div = document.createElement('div');
           art = canvasContainer.appendChild(div);
           var num = doc._pdfInfo.numPages+1;
+
+          const pdfArticle = document.querySelector(".pdf-articles");
+          if (pdfArticle){
+            pdfArticle.parentNode.removeChild(art);
+          }
+
           art.classList.add("pdf-articles");
           var positionInfo = art.getBoundingClientRect();
           var width =  positionInfo.width;
@@ -197,9 +205,9 @@ function renderPdfArticle(url, canvasContainer){
   }
 
 function clearPdf(){
-      const art = document.querySelector(".pdf-articles");
-      if (art){
-      art.parentNode.removeChild(art);
+      const pdfArticle = document.querySelector(".pdf-articles");
+      if (pdfArticle){
+        pdfArticle.parentNode.removeChild(pdfArticle);
       }
   }
 function hideAll(){
