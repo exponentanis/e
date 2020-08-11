@@ -181,7 +181,7 @@ function renderPdfArticle(url, canvasContainer){
                   await doc.getPage(i).then( async function(page){
                   await renderPage(page, width);
                   });
-                  if(i==1){
+                  if(i<=2){
                     window.scrollTo(0, 0);
                   }
                   if(i==num-1){

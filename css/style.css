@@ -488,6 +488,7 @@ body {
     } 
     .link{
         margin-bottom: 7px;
+        margin-right: 0px;
     }
     .foo{
         padding: 30px 0px;
@@ -618,6 +619,13 @@ body {
    .swiper-container{
        width: 102%;
    }
+.container{
+    width: 90%;
+    margin-right: 24px;
+}
+.main{
+    padding-left: 5px;
+}
    .text-center{
     font-size: 45px;
     }
