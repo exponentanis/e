@@ -3,7 +3,6 @@
 
 console.log("я здесь");
 
-
 const scroll = document.querySelector('.scroll');
 const news = document.querySelector('.news');
 const sw1 = document.querySelector('.sw1');
@@ -35,16 +34,15 @@ let pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
 var art = null;
 
-const octo = document.querySelector('.octo');
 
+
+const octo = document.querySelector('.octo');
 
 let login = localStorage.getItem('exponenta');
 
 if(!login){
   let login = localStorage.setItem('exponenta', '002');
 }
-
-
 
 async function getData(url){
   const response = await fetch(url);
@@ -183,6 +181,9 @@ function renderPdfArticle(url, canvasContainer){
                   await doc.getPage(i).then( async function(page){
                   await renderPage(page, width);
                   });
+                  if(i==1){
+                    window.scrollTo(0, 0);
+                  }
                   if(i==num-1){
                     octo.classList.add('hide');
                   }
@@ -281,6 +282,9 @@ function changePage(){
     }
   }
 }
+
+
+
 async function openRelease(){
   console.log('start open');  
   const target = event.target;
@@ -480,3 +484,4 @@ async function init(){
   initSwipe();
 }
 init();
+
