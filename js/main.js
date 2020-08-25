@@ -38,11 +38,6 @@ var art = null;
 
 const octo = document.querySelector('.octo');
 
-let login = localStorage.getItem('exponenta');
-
-if(!login){
-  let login = localStorage.setItem('exponenta', '002');
-}
 
 async function getData(url){
   const response = await fetch(url);
@@ -131,17 +126,18 @@ async function forDataNews(data){
   });
 }
 function createNews(news){
-  const {title, description, image} = news;
+  const {title, description, image, link} = news;
   const card = `
-  <section class="swiper-slide new" style=" 
+  <a href="${link}" target="_blank" class="swiper-slide new" style=" 
   cursor: pointer;
   background: url(preview_img/news/${image}) no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto ;
   border-radius: 50px;
+  text-decoration: none;
   ">
     <h1 class="news-title">${title}<br/></h1>
     <p class="news-text">${description}</p>
-  </section> 
+  </a> 
   `;
   newsCards.insertAdjacentHTML('beforeend', card);
 }
@@ -150,7 +146,7 @@ function renderPdfArticle(url, canvasContainer){
     console.log('strart render');
     async function renderPage(page, width){
             console.log(width);
-            var viewport = page.getViewport(4*width / page.getViewport(1.0).width);
+            var viewport = page.getViewport(4*width / (page.getViewport(1.0).width));
             var canvas = document.createElement('canvas');
             var child = art.appendChild(canvas);
             child.classList.add("page");

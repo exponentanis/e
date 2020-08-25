@@ -98,6 +98,7 @@ body {
     height: 285px;
     background: #565661;
     background-size: 100% 100%;
+    
 }
 .news-title{
     padding-left: 35px;
@@ -108,7 +109,8 @@ body {
     font-weight: bold;
     font-size: 30px;
     line-height: 32px;
-    color: #302C34;
+    color: #FFFFFF;
+
 }
 .news-text{
     padding: 0px 35px;
@@ -117,7 +119,7 @@ body {
     font-weight: normal;
     font-size: 20px;
     line-height: 22px;
-    color: rgba(48, 44, 52, 0.95);
+    color: #FFFFFF;
 
     overflow: hidden;
     display: -webkit-box;
