@@ -150,7 +150,7 @@ function renderPdfArticle(url, canvasContainer){
               	var viewport = page.getViewport(4*width / (page.getViewport(1.0).width));
             }
             else{
-              var viewport = page.getViewport(width / (page.getViewport(1.0).width));
+                 var viewport = page.getViewport(width / (page.getViewport(1.0).width));
             }
             var canvas = document.createElement('canvas');
             var child = art.appendChild(canvas);
@@ -167,7 +167,12 @@ function renderPdfArticle(url, canvasContainer){
               canvas.style.width = Math.floor(viewport.width/5) + 'pt';
             }
             else{
-              canvas.style.width = Math.floor(viewport.width) + 'pt';
+              if(width<900){
+                canvas.style.width = Math.floor(viewport.width) + 'pt';
+             }
+             else{
+              canvas.style.width = Math.floor(4*viewport.width/5) + 'pt';
+             }
             }
             page.render(renderContext);         
     }
