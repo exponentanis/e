@@ -146,7 +146,12 @@ function renderPdfArticle(url, canvasContainer){
     console.log('strart render');
     async function renderPage(page, width){
             console.log(width);
-            var viewport = page.getViewport(4*width / (page.getViewport(1.0).width));
+            if(width<500){
+              	var viewport = page.getViewport(4*width / (page.getViewport(1.0).width));
+            }
+            else{
+              var viewport = page.getViewport(width / (page.getViewport(1.0).width));
+            }
             var canvas = document.createElement('canvas');
             var child = art.appendChild(canvas);
             child.classList.add("page");
@@ -158,7 +163,12 @@ function renderPdfArticle(url, canvasContainer){
             };
             canvas.height = viewport.height;
             canvas.width = viewport.width;
-            canvas.style.width = Math.floor(viewport.width/5) + 'pt';
+            if(width<500){
+              canvas.style.width = Math.floor(viewport.width/5) + 'pt';
+            }
+            else{
+              canvas.style.width = Math.floor(viewport.width) + 'pt';
+            }
             page.render(renderContext);         
     }
     pdfjsLib.disableWorker = true;
