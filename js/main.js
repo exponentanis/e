@@ -13,6 +13,8 @@ const menu = document.querySelector('.menu');
 const button = document.querySelector('.button');
 const buttons = document.querySelectorAll('.button');
 
+const topp = document.querySelector('.top');
+
 const releases = document.querySelector('.releases');
 const articles = document.querySelector('.articles');
 const about = document.querySelector('.about');
@@ -229,7 +231,7 @@ function hideAll(){
   articleList.classList.add('hide');
   returnButton.classList.add('hide');
   octo.classList.add('hide');
-  
+  topp.classList.remove('tophowto');
   clearPdf();
 }
 function changePage(){
@@ -267,6 +269,7 @@ function changePage(){
       case 'button-howto':
         menu.classList.remove('menu-center');
         howto.classList.remove('hide');
+        topp.classList.add('tophowto');
         break;  
       case 'button-offer':
         news.classList.remove('hide');

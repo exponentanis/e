@@ -5,8 +5,16 @@ body {
     background: linear-gradient(180deg, rgba(37, 47, 55, 0.97) 0%, rgba(39, 46, 52, 0.830135) 83.85%) no-repeat;
 }
 
+
+
+.space{
+    padding-left:  60px;
+}
+.howto{
+    width: 1800px;
+}
 .container {
-    max-width: 1500px;
+    max-width: 1800px;
     margin: auto;
 
 }
@@ -43,11 +51,15 @@ body {
     min-width: 220px;
 
 }
+
 .top{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     width: 100%;
+}
+.tophowto{
+        width: 130%;
 }
 .vertical{
     display: flex;
