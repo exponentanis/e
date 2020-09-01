@@ -256,6 +256,7 @@ function changePage(){
       case 'button-about':
         menu.classList.remove('menu-center');
         about.classList.remove('hide');
+        topp.classList.add('tophowto');
         break;
       case 'button-news':
         news.classList.remove('hide');

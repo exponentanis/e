@@ -150,8 +150,11 @@ body {
     font-style: italic;
     font-weight: normal;
     font-size: 30px;
-    line-height: 32px;
+    line-height: 45px;
     color: #C4C4C4;
+}
+.mid-text{
+    text-align: center; 
 }
 .middle-text{
     cursor: default;
