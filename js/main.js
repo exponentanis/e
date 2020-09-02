@@ -303,6 +303,7 @@ async function openIssueJPG(inf, num, canvasContainer, article){
   var art = canvasContainer.appendChild(div);
   art.classList.add("pdf-articles");
   num++;
+  window.scrollTo(0, 0);
   for (var i=1;i<num;i++){
 
     if(article==0){
