@@ -317,7 +317,7 @@ async function openIssueJPG(inf, num, canvasContainer, article){
       var b = i;
     }
     const page = `
-    <img src="${inf}${b}.jpg" alt="page" class="page" style=" width: 130%;">
+    <img src="${inf}${b}.jpg" alt="page" class="page-magazine">
     `;
 
     
