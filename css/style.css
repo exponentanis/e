@@ -5,7 +5,10 @@ body {
     background: linear-gradient(180deg, rgba(37, 47, 55, 0.97) 0%, rgba(39, 46, 52, 0.830135) 83.85%) no-repeat;
 }
 
-
+.podca{
+    margin: auto;
+    max-width: 875px;
+}
 .page-magazine{
      width: 130%;
     }
@@ -320,16 +323,29 @@ body {
     .main{
         width: 90%;
     }
+
 }
 @media(max-width: 1100px){
+    .podca{
+        margin: auto;
+        max-width: 775px;
+    }
     .tophowto{
         width: 110%;
     } 
     .page-magazine{
         width: 110%;
     }
+    .container{
+        max-width: 860px;
+        margin: auto;
+    }
 }
 @media(max-width: 992px){
+    .podca{
+        margin: auto;
+        max-width: 750px;
+    }
 
     .container{
         max-width: 750px}
@@ -398,6 +414,10 @@ body {
     }
 }
 @media(max-width: 768px){
+    .podca{
+        margin: auto;
+        max-width: 550px;
+    }
     .tophowto{
         width: 110%;
     }
@@ -473,6 +493,10 @@ body {
     }
 }
 @media(max-width: 578px){ 
+    .podca{
+        margin: auto;
+        max-width: 78%;
+    }
     .space{
         padding-left: 30px;
     }
@@ -555,6 +579,13 @@ body {
 
 }
 @media(max-width: 480px){
+    .podca{
+        margin: auto;
+        max-width: 80%;
+    }
+    .scroll{
+        width: 90%;
+    }
     .about{
         width: 320px;
     }
@@ -667,6 +698,10 @@ body {
 
 }
 @media(max-width: 360px){
+    .podca{
+        margin: auto;
+        max-width: 320px;
+    }
     .howto{
         width: 300px;
     }

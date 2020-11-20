@@ -8,6 +8,8 @@ const news = document.querySelector('.news');
 const sw1 = document.querySelector('.sw1');
 const sw2 = document.querySelector('.sw2');
 
+const podca = document.querySelector('.podca');
+
 const main = document.querySelector('.main');
 const menu = document.querySelector('.menu');
 const button = document.querySelector('.button');
@@ -30,6 +32,9 @@ const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
+
+
+
 
 let pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
@@ -219,6 +224,7 @@ function clearPdf(){
       }
   }
 function hideAll(){
+  podca.classList.add('hide');
   news.classList.add('hide');
   releases.classList.add('hide');
   articles.classList.add('hide');
@@ -247,6 +253,7 @@ function changePage(){
 
     switch(clas){
       case 'button-main':
+        podca.classList.remove('hide');
         news.classList.remove('hide');
         releases.classList.remove('hide');
         articles.classList.remove('hide');
