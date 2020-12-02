@@ -239,6 +239,13 @@ function hideAll(){
   topp.classList.remove('tophowto');
   clearPdf();
 }
+
+function checkPage(){
+  const queryString = window.location.search;
+  console.log(queryString);
+}
+
+
 function changePage(){
   const target = event.target;
   const butt = target.closest('.button');
@@ -476,6 +483,10 @@ function initSwipe(){
       artSwiper2.autoplay.start();});
 }
 
+  const queryString = window.location.search;
+  console.log(queryString);
+
+  
 async function init(){
   const dataIssues = await getData('./db/issues.json');
   await forDataIssues(dataIssues);
