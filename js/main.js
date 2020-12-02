@@ -32,12 +32,13 @@ const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
-
+const podcamul = document.querySelector('.podcamul');
 
 
 
 let pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
+let clickbuff = button;
 var art = null;
 
 
@@ -237,79 +238,127 @@ function hideAll(){
   returnButton.classList.add('hide');
   octo.classList.add('hide');
   topp.classList.remove('tophowto');
+  podcamul.classList.add('hide');
   clearPdf();
 }
 
+
 function checkPage(){
-  const queryString = window.location.search;
-  console.log(queryString);
+    var searchString = window.location.search.substring(1),
+    i, val, params = searchString.split("&");
+    for (i=0;i<params.length;i++) {
+      val = params[i].split("=");
+      if (val[0] == "e") {
+        var ind =  val[1];
+      }
+      else{
+        var ind =  null; 
+      }
+    }
+
+    changePage(null, ind);
 }
 
 
-function changePage(){
-  const target = event.target;
-  const butt = target.closest('.button');
-  if (butt!=clicked){
-    if (clicked!=null){
-      clicked.classList.remove("locked-button");
+
+function changePage(event, ind){
+  var clas = null;
+    if (event!=null){
+      const target = event.target;
+      const butt = target.closest('.button');
+      if (butt!=clicked){
+        if (clicked!=null){
+          clicked.classList.remove("locked-button");
+        }
+        butt.classList.add("locked-button");
+        clicked = butt;
+        clas = butt.classList[1].substring(7);
     }
-    butt.classList.add("locked-button");
-    clicked = butt;
-    const clas = butt.classList[1];  
-    hideAll();
+    }
+    else{
+          const ba = document.getElementById("ba");
+          const bh = document.getElementById("bh");
+          const br = document.getElementById("br");
+          const bp = document.getElementById("bp");
+          clas = ind;
+          var ind = null;
+    }
+
 
     switch(clas){
-      case 'button-main':
+      case 'main':
+        hideAll();
         podca.classList.remove('hide');
         news.classList.remove('hide');
         releases.classList.remove('hide');
         articles.classList.remove('hide');
         initSwipe();
         break;
-      case 'button-about':
+      case 'about':
+        hideAll();
         menu.classList.remove('menu-center');
         about.classList.remove('hide');
         topp.classList.add('tophowto');
+        clicked.classList.remove("locked-button");
+        ba.classList.add("locked-button");
+        clickbuff = ba;
+        clicked = ba;
         break;
-      case 'button-news':
+      case 'news':
         news.classList.remove('hide');
         initSwipe();
         break;  
-      case 'button-archive':
+      case 'archive':
+        hideAll();
         articleList.classList.remove('hide');
         menu.classList.add('vertical');
         menu.classList.remove('menu');
+        clicked.classList.remove("locked-button");
+        br.classList.add("locked-button");
+        clickbuff = br;
+        clicked = br;
         break;  
-      case 'button-howto':
+      case 'howto':
+        hideAll();
         menu.classList.remove('menu-center');
         howto.classList.remove('hide');
         topp.classList.add('tophowto');
+        clicked.classList.remove("locked-button");
+        bh.classList.add("locked-button");
+        clickbuff = bh;
+        clicked = bh;
         break;  
-      case 'button-offer':
-        news.classList.remove('hide');
-        releases.classList.remove('hide');
-        articles.classList.remove('hide');
-        initSwipe();
+      case 'offer':
+        changePage(null, ind);
         setTimeout(function() {
           clicked.classList.remove("locked-button");
-          clicked = button;
-          button.classList.add("locked-button");  
+          clicked = clickbuff;
+          clicked.classList.add("locked-button");  
         }, 200);
               
         break;
       case 'return-button':
+        hideAll();
         news.classList.remove('hide');
         releases.classList.remove('hide');
         articles.classList.remove('hide');
         initSwipe();
         clicked.classList.remove("locked-button");
-        clicked = button;
+        clicked = butt;
         button.classList.add("locked-button");
         window.scrollTo(0, 0);
         break;
+      case 'podcasts':
+        hideAll();
+        menu.classList.add('vertical');
+        menu.classList.remove('menu');
+        podcamul.classList.remove('hide');
+        clicked.classList.remove("locked-button");
+        bp.classList.add("locked-button");
+        clickbuff = bp;
+        clicked = bp;
     }
   }
-}
 
 async function openIssueJPG(inf, num, canvasContainer, article){
   console.log(inf);  
@@ -483,11 +532,12 @@ function initSwipe(){
       artSwiper2.autoplay.start();});
 }
 
-  const queryString = window.location.search;
-  console.log(queryString);
+
+  
 
   
 async function init(){
+  checkPage();
   const dataIssues = await getData('./db/issues.json');
   await forDataIssues(dataIssues);
   const dataArticles = await getData('./db/articles.json');

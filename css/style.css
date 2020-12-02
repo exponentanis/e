@@ -78,8 +78,10 @@ body {
     flex-direction: column;
 }
 .menu-center{
-    margin: auto;    
+    margin: auto;   
+    margin-top: 0px; 
 }
+
 
 .button{
     display: flex;
