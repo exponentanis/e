@@ -420,8 +420,11 @@ async function openRelease(stat,num){
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
-  clicked.classList.remove("locked-button");
-  
+
+  try{
+    clicked.classList.remove("locked-button");}
+  catch(err){}
+
   returnButton.classList.remove('hide');
   clicked = null;
   octo.classList.remove('hide'); 
