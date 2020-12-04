@@ -35,15 +35,18 @@ const rating = document.querySelectorAll('.rating');
 const podcamul = document.querySelector('.podcamul');
 
 
-
 let pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
 let clickbuff = button;
 var art = null;
-
+var stat = null;
 
 
 const octo = document.querySelector('.octo');
+
+
+
+
 
 
 async function getData(url){
@@ -243,7 +246,8 @@ function hideAll(){
 }
 
 
-function checkPage(){
+function checkPage(stat){
+  if(stat==null){
     var searchString = window.location.search.substring(1),
     i, val, params = searchString.split("&");
     for (i=0;i<params.length;i++) {
@@ -257,6 +261,10 @@ function checkPage(){
     }
 
     changePage(null, ind);
+  }
+  else{
+    changePage(null, stat);
+  }
 }
 
 
@@ -284,7 +292,6 @@ function changePage(event, ind){
           var ind = null;
     }
 
-
     switch(clas){
       case 'main':
         hideAll();
@@ -292,19 +299,23 @@ function changePage(event, ind){
         news.classList.remove('hide');
         releases.classList.remove('hide');
         articles.classList.remove('hide');
+        button.classList.add("locked-button");
+        clickbuff = button;
         initSwipe();
-        window.history.pushState({urlPath: '/'}, "", '/');
+        window.history.pushState({urlPath: 'main'}, "", '/index.html');
         break;
       case 'about':
         hideAll();
         menu.classList.remove('menu-center');
         about.classList.remove('hide');
         topp.classList.add('tophowto');
-        clicked.classList.remove("locked-button");
+        try{
+          clicked.classList.remove("locked-button");}
+          catch(err){}
         ba.classList.add("locked-button");
         clickbuff = ba;
         clicked = ba;
-        window.history.pushState({urlPath: '/about'}, "", '/about');
+        window.history.pushState({urlPath: 'about'}, "", '/about.html');
         break;
       case 'news':
         news.classList.remove('hide');
@@ -315,9 +326,11 @@ function changePage(event, ind){
         articleList.classList.remove('hide');
         menu.classList.add('vertical');
         menu.classList.remove('menu');
-        clicked.classList.remove("locked-button");
+        try{
+          clicked.classList.remove("locked-button");}
+          catch(err){}
         br.classList.add("locked-button");
-        window.history.pushState({urlPath: '/archive'}, "", '/archive');
+        window.history.pushState({urlPath: 'archive'}, "", '/archive.html');
         clickbuff = br;
         clicked = br;
         break;  
@@ -326,9 +339,11 @@ function changePage(event, ind){
         menu.classList.remove('menu-center');
         howto.classList.remove('hide');
         topp.classList.add('tophowto');
-        clicked.classList.remove("locked-button");
+        try{
+          clicked.classList.remove("locked-button");}
+          catch(err){}
         bh.classList.add("locked-button");
-        window.history.pushState({urlPath: '/howto'}, "", '/howto');
+        window.history.pushState({urlPath: 'howto'}, "", '/howto.html');
         clickbuff = bh;
         clicked = bh;
         break;  
@@ -351,16 +366,18 @@ function changePage(event, ind){
         clicked = butt;
         button.classList.add("locked-button");
         window.scrollTo(0, 0);
-        window.history.pushState({urlPath: '/'}, "", '/');
+        window.history.pushState({urlPath: 'main'}, "", '/index.html');
         break;
       case 'podcasts':
         hideAll();
         menu.classList.add('vertical');
         menu.classList.remove('menu');
         podcamul.classList.remove('hide');
-        clicked.classList.remove("locked-button");
+        try{
+          clicked.classList.remove("locked-button");}
+          catch(err){}
         bp.classList.add("locked-button");
-        window.history.pushState({urlPath: '/podcasts'}, "", '/podcasts');
+        window.history.pushState({urlPath: 'podcasts'}, "", '/podcasts.html');
         clickbuff = bp;
         clicked = bp;
     }
@@ -398,12 +415,8 @@ async function openIssueJPG(inf, num, canvasContainer, article){
 }
 }
 
-async function openRelease(){
-  console.log('start open');  
-  const target = event.target;
-  const card = target.closest('.card');
-  const info = card.dataset.info;
-  const number = card.dataset.number;
+async function openRelease(stat,num){
+
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
@@ -411,30 +424,50 @@ async function openRelease(){
   
   returnButton.classList.remove('hide');
   clicked = null;
+  octo.classList.remove('hide'); 
 
-  octo.classList.remove('hide');
-  //renderPdfArticle(`./pdfs/issues/${info}.pdf`, main);
-  openIssueJPG(`pdfs/issues/${info}/${info}-`, number,  main, 0);
-}
-async function openArticle(){
+  if(num==null){
+  console.log('start open');  
   const target = event.target;
   const card = target.closest('.card');
   const info = card.dataset.info;
   const number = card.dataset.number;
-  console.log(info);  
+  //renderPdfArticle(`./pdfs/issues/${info}.pdf`, main);
+  openIssueJPG(`pdfs/issues/${info}/${info}-`, number,  main, 0);
+  window.history.pushState({urlPath: `pdfs/issues/${info}/${info}-`, num: number, e: "issues"}, "", `?issue=${info}`);
+  }
+  else{
+    openIssueJPG(stat, num,  main, 0);
+  }
+}
+async function openArticle(stat,num){
+
   hideAll();
   menu.classList.add('vertical');
   menu.classList.remove('menu');
- clicked.classList.remove("locked-button");
- 
- returnButton.classList.remove('hide');
- clicked = null;
+  try{
+  clicked.classList.remove("locked-button")
+  }catch(error){
 
- octo.classList.remove('hide');
-
- //renderPdfArticle(`./pdfs/articles/${info}.pdf`);
+  }
  
- openIssueJPG(`pdfs/articles/${info}/${info}-`, number,  main, 1);
+  returnButton.classList.remove('hide');
+  clicked = null;
+  octo.classList.remove('hide');
+
+  if(num==null){
+    const target = event.target;
+    const card = target.closest('.card');
+    const info = card.dataset.info;
+    const number = card.dataset.number;
+    //renderPdfArticle(`./pdfs/articles/${info}.pdf`);
+    openIssueJPG(`pdfs/articles/${info}/${info}-`, number,  main, 1);
+    window.history.pushState({urlPath: `pdfs/articles/${info}/${info}-`, num: number, e: "articles"}, "", `?article=${info}`);
+  }
+  else{
+    console.log(stat, num);
+      openIssueJPG(stat, num,  main, 1);
+  }
 }
 function loadData(name){
   
@@ -543,7 +576,21 @@ function initSwipe(){
 
   
 async function init(){
-  checkPage();
+
+  var stat = history.state;
+  if(stat!=null){
+  checkPage(stat.urlPath);
+  if (stat.e=='issues'){
+    openRelease(stat.urlPath,stat.num);
+  }
+  if (stat.e=='articles'){
+    openArticle(stat.urlPath,stat.num)
+  }
+  }
+
+
+
+
   const dataIssues = await getData('./db/issues.json');
   await forDataIssues(dataIssues);
   const dataArticles = await getData('./db/articles.json');
@@ -574,20 +621,10 @@ async function init(){
     articleList.insertAdjacentElement('beforeend', addcard);
   }
   }
-
-
-
-
-
- 
-  
   const releaseCard = issuesCards.querySelectorAll('.img-card');
   const articleCard = articlesCards.querySelectorAll('.img-card');
 
   const rating = document.querySelectorAll('.rating');
-
-
-
 
   buttons.forEach(function(item){
     item.addEventListener("click", changePage);
@@ -604,6 +641,23 @@ async function init(){
   rating.forEach(function(item){
     item.addEventListener("click", setRate);
   });
+
+
+
+  //backButton
+  window.addEventListener('popstate', function() {
+      var stat = history.state;
+      if(stat!=null){
+      checkPage(stat.urlPath);
+      if (stat.e=='issues'){
+        openRelease(stat.urlPath,stat.num);
+      }
+      if (stat.e=='articles'){
+        openArticle(stat.urlPath,stat.num)
+      }
+      }
+  });
+
 
   initSwipe();
 }

@@ -338,7 +338,7 @@ body {
 }
 @media (max-width: 1366px){
     .pdf-articles{
-    width: 100%;
+    width: 90%;
     } 
     .container{
         max-width: 1060px;    
