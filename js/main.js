@@ -242,6 +242,12 @@ function hideAll(){
   octo.classList.add('hide');
   topp.classList.remove('tophowto');
   podcamul.classList.add('hide');
+  try{
+    clicked.classList.remove("locked-button");}
+    catch(err){}
+  try{
+    button.classList.remove("locked-button");}
+    catch(err){}
   clearPdf();
 }
 
