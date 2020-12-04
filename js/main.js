@@ -302,7 +302,7 @@ function changePage(event, ind){
         button.classList.add("locked-button");
         clickbuff = button;
         initSwipe();
-        window.history.pushState({urlPath: 'main'}, "", '/index.html');
+        window.history.pushState({urlPath: 'main'}, "", '/e/index.html');
         break;
       case 'about':
         hideAll();
@@ -315,7 +315,7 @@ function changePage(event, ind){
         ba.classList.add("locked-button");
         clickbuff = ba;
         clicked = ba;
-        window.history.pushState({urlPath: 'about'}, "", '/about.html');
+        window.history.pushState({urlPath: 'about'}, "", '/e/about.html');
         break;
       case 'news':
         news.classList.remove('hide');
@@ -330,7 +330,7 @@ function changePage(event, ind){
           clicked.classList.remove("locked-button");}
           catch(err){}
         br.classList.add("locked-button");
-        window.history.pushState({urlPath: 'archive'}, "", '/archive.html');
+        window.history.pushState({urlPath: 'archive'}, "", '/e/archive.html');
         clickbuff = br;
         clicked = br;
         break;  
@@ -343,7 +343,7 @@ function changePage(event, ind){
           clicked.classList.remove("locked-button");}
           catch(err){}
         bh.classList.add("locked-button");
-        window.history.pushState({urlPath: 'howto'}, "", '/howto.html');
+        window.history.pushState({urlPath: 'howto'}, "", '/e/howto.html');
         clickbuff = bh;
         clicked = bh;
         break;  
@@ -366,7 +366,7 @@ function changePage(event, ind){
         clicked = butt;
         button.classList.add("locked-button");
         window.scrollTo(0, 0);
-        window.history.pushState({urlPath: 'main'}, "", '/index.html');
+        window.history.pushState({urlPath: 'main'}, "", '/e/index.html');
         break;
       case 'podcasts':
         hideAll();
@@ -377,7 +377,7 @@ function changePage(event, ind){
           clicked.classList.remove("locked-button");}
           catch(err){}
         bp.classList.add("locked-button");
-        window.history.pushState({urlPath: 'podcasts'}, "", '/podcasts.html');
+        window.history.pushState({urlPath: 'podcasts'}, "", '/e/podcasts.html');
         clickbuff = bp;
         clicked = bp;
     }
