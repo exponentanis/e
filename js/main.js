@@ -293,6 +293,7 @@ function changePage(event, ind){
         releases.classList.remove('hide');
         articles.classList.remove('hide');
         initSwipe();
+        window.history.pushState({urlPath: '/'}, "", '/');
         break;
       case 'about':
         hideAll();
@@ -303,6 +304,7 @@ function changePage(event, ind){
         ba.classList.add("locked-button");
         clickbuff = ba;
         clicked = ba;
+        window.history.pushState({urlPath: '/about'}, "", '/about');
         break;
       case 'news':
         news.classList.remove('hide');
@@ -315,6 +317,7 @@ function changePage(event, ind){
         menu.classList.remove('menu');
         clicked.classList.remove("locked-button");
         br.classList.add("locked-button");
+        window.history.pushState({urlPath: '/archive'}, "", '/archive');
         clickbuff = br;
         clicked = br;
         break;  
@@ -325,6 +328,7 @@ function changePage(event, ind){
         topp.classList.add('tophowto');
         clicked.classList.remove("locked-button");
         bh.classList.add("locked-button");
+        window.history.pushState({urlPath: '/howto'}, "", '/howto');
         clickbuff = bh;
         clicked = bh;
         break;  
@@ -347,6 +351,7 @@ function changePage(event, ind){
         clicked = butt;
         button.classList.add("locked-button");
         window.scrollTo(0, 0);
+        window.history.pushState({urlPath: '/'}, "", '/');
         break;
       case 'podcasts':
         hideAll();
@@ -355,6 +360,7 @@ function changePage(event, ind){
         podcamul.classList.remove('hide');
         clicked.classList.remove("locked-button");
         bp.classList.add("locked-button");
+        window.history.pushState({urlPath: '/podcasts'}, "", '/podcasts');
         clickbuff = bp;
         clicked = bp;
     }
