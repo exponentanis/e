@@ -8,7 +8,7 @@ const news = document.querySelector('.news');
 const sw1 = document.querySelector('.sw1');
 const sw2 = document.querySelector('.sw2');
 
-const podca = document.querySelector('.podca');
+
 
 const main = document.querySelector('.main');
 const menu = document.querySelector('.menu');
@@ -32,8 +32,8 @@ const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
-const podcamul = document.querySelector('.podcamul');
-
+const podcamul = document.getElementById('podcamul');
+const podca = document.getElementById('podca');
 
 let pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
@@ -45,34 +45,8 @@ var stat = null;
 const octo = document.querySelector('.octo');
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//auto generate article text
-function contentToHtml(text) {
-  return text
-    .split('\n')
-    .map(paragraph => `<p>${paragraph}</p>`)
-    .join('')
-}
 
-(function(){
 
-  let inp = document.getElementById('input');
-  let res = document.getElementById('result');
-  let ok  = document.getElementById('ok');
-  ok.addEventListener('click', function(){
-    let open  = document.getElementById('open').value;
-    let close = document.getElementById('close').value;
-    let str = inp.value;
-  
-    // The main magic is going here:  .replace('something', 'with smth else')
-    str = str.replace(/^(.)/gm, open + '$1')  //Match any non-empty (.) new line ^
-             .replace(/(.)$/gm, '$1' + close);  // Any non-empty (.) line ending $.
-  
-    res.value = str;
-  });
-  
-  })();
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 async function getData(url){
@@ -327,6 +301,7 @@ function changePage(event, ind){
     switch(clas){
       case 'main':
         hideAll();
+        podcamul.classList.add('hide');
         podca.classList.remove('hide');
         news.classList.remove('hide');
         releases.classList.remove('hide');
