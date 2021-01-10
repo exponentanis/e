@@ -32,7 +32,8 @@ const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
-
+const podcamul = document.getElementById('podcamul');
+const podca = document.getElementById('.podca');
 
 
 
@@ -708,10 +709,6 @@ async function init(podcamul,podca){
   initSwipe();
 }
 
-window.onload = function () {
-  const podcamul = document.getElementById('podcamul');
-  const podca = document.getElementById('.podca');
-  init(podcamul,podca);
-};
 
+  init(podcamul,podca);
 
