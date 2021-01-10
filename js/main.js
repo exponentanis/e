@@ -32,8 +32,11 @@ const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
-const podcamul = document.getElementById('podcamul');
-const podca = document.querySelector('.podca');
+
+
+
+
+
 
 let pdfArticle = document.querySelector(".pdf-articles");
 let clicked = button;
@@ -617,7 +620,7 @@ async function openTxtArticle(txtArticle){
   
 
   
-async function init(){
+async function init(podcamul,podca){
   //load article if open
   var stat = history.state;
   if(stat!=null){
@@ -704,5 +707,11 @@ async function init(){
 
   initSwipe();
 }
-init();
+
+window.onload = function () {
+  const podcamul = document.getElementById('podcamul');
+  const podca = document.getElementById('.podca');
+  init(podcamul,podca);
+};
+
 

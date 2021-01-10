@@ -753,8 +753,8 @@ body {
     }
 
     .main{
-        margin-left: 5px;
-        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
         width: 100%;
     }
     .podca{
@@ -772,10 +772,13 @@ body {
    }
 .container{
     width: 100%;
-    margin-left: 12px;
+    margin-left: 0px;
 }
 .article-list{
-    width: 90%;   
+    width: 80%;   
+}
+.acard{
+    width: 30%;
 }
 .link{
     margin-bottom: 7px;
