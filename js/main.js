@@ -11,7 +11,7 @@ const sw2 = document.querySelector('.sw2');
 
 
 const main = document.querySelector('.main');
-const menu = document.querySelector('.menu');
+const menub = document.querySelector('.menub');
 const button = document.querySelector('.button');
 const buttons = document.querySelectorAll('.button');
 
@@ -241,9 +241,9 @@ function hideAll(){
   articles.classList.add('hide');
   about.classList.add('hide');
   howto.classList.add('hide');
-  menu.classList.remove('vertical');
-  menu.classList.add('menu');
-  menu.classList.add('menu-center');
+  menub.classList.remove('vertical');
+  menub.classList.add('menub');
+  menub.classList.add('menu-center');
   articleList.classList.add('hide');
   returnButton.classList.add('hide');
   octo.classList.add('hide');
@@ -320,7 +320,7 @@ function changePage(event, ind){
         break;
       case 'about':
         hideAll();
-        menu.classList.remove('menu-center');
+        menub.classList.remove('menu-center');
         about.classList.remove('hide');
         topp.classList.add('tophowto');
         try{
@@ -338,8 +338,8 @@ function changePage(event, ind){
       case 'archive':
         hideAll();
         articleList.classList.remove('hide');
-        menu.classList.add('vertical');
-        menu.classList.remove('menu');
+        menub.classList.add('vertical');
+        menub.classList.remove('menub');
         try{
           clicked.classList.remove("locked-button");}
           catch(err){}
@@ -350,7 +350,7 @@ function changePage(event, ind){
         break;  
       case 'howto':
         hideAll();
-        menu.classList.remove('menu-center');
+        menub.classList.remove('menu-center');
         howto.classList.remove('hide');
         topp.classList.add('tophowto');
         try{
@@ -384,8 +384,8 @@ function changePage(event, ind){
         break;
       case 'podcasts':
         hideAll();
-        menu.classList.add('vertical');
-        menu.classList.remove('menu');
+        menub.classList.add('vertical');
+        menub.classList.remove('menub');
         podcamul.classList.remove('hide');
         try{
           clicked.classList.remove("locked-button");}
@@ -432,8 +432,8 @@ async function openIssueJPG(inf, num, canvasContainer, article){
 async function openRelease(stat,num){
 
   hideAll();
-  menu.classList.add('vertical');
-  menu.classList.remove('menu');
+  menub.classList.add('vertical');
+  menub.classList.remove('menub');
 
   try{
     clicked.classList.remove("locked-button");}
@@ -460,8 +460,8 @@ async function openRelease(stat,num){
 async function openArticle(stat,num,typ){
 
   hideAll();
-  menu.classList.add('vertical');
-  menu.classList.remove('menu');
+  menub.classList.add('vertical');
+  menub.classList.remove('menub');
   try{
   clicked.classList.remove("locked-button")
   }catch(error){
