@@ -47,7 +47,14 @@ const octo = document.querySelector('.octo');
 
 
 
-
+async function getTxt(url){
+  const response = await fetch(url);
+  if(!response.ok){
+    throw new Error(`Ашыбка адреса ${url},
+    статус ашыбки ${response.status}`)
+  }
+  return await response.text();
+}
 
 async function getData(url){
   const response = await fetch(url);
@@ -90,11 +97,11 @@ async function forDataArticles(data){
     );
 }
 async function createArticles(article, i){
-  const {name, number} = article;
+  const {type, name, number} = article;
 
 
   const card = `
-  <section class="swiper-slide card forlist" data-info = "${name}" data-number = "${number}">
+  <section class="swiper-slide card forlist" data-info = "${name}" data-number = "${number}" data-type = "${type}">
     <div class="card-container forcont">
         <img src="preview_img/articles/${name}-1.jpg" alt="logo" class="img-card getimg" >
         <div class="info">
@@ -126,7 +133,7 @@ async function createArticles(article, i){
     
   }
   await crlist();
-  if(i<6){
+  if(i<12){
   articlesCards.insertAdjacentHTML('beforeend', card);
   }
 }
@@ -450,7 +457,7 @@ async function openRelease(stat,num){
     openIssueJPG(stat, num,  main, 0);
   }
 }
-async function openArticle(stat,num){
+async function openArticle(stat,num,typ){
 
   hideAll();
   menu.classList.add('vertical');
@@ -468,15 +475,35 @@ async function openArticle(stat,num){
   if(num==null){
     const target = event.target;
     const card = target.closest('.card');
+    const type = card.dataset.type;
     const info = card.dataset.info;
     const number = card.dataset.number;
-    //renderPdfArticle(`./pdfs/articles/${info}.pdf`);
-    openIssueJPG(`pdfs/articles/${info}/${info}-`, number,  main, 1);
-    window.history.pushState({urlPath: `pdfs/articles/${info}/${info}-`, num: number, e: "articles"}, "", `?article=${info}`);
+    console.log(type);
+    if(type=="pdf"){
+      console.log("pdf")
+      //renderPdfArticle(`./pdfs/articles/${info}.pdf`);
+      openIssueJPG(`pdfs/articles/${info}/${info}-`, number,  main, 1);
+    }
+    if(type=="txt"){
+      console.log("txt")
+      const txtArticle = await getTxt(`pdfs/articles/${info}/${info}.txt`);
+      await openTxtArticle(txtArticle);
+      window.scrollTo(0, 0);
+      octo.classList.add('hide');
+    }
+
+    window.history.pushState({urlPath: `pdfs/articles/${info}/${info}`, num: number, e: "articles", type: type }, "", `?article=${info}`);
   }
   else{
     console.log(stat, num);
-      openIssueJPG(stat, num,  main, 1);
+    if (typ == "pdf"){
+          openIssueJPG(stat + "-", num,  main, 1);
+        }
+    if (typ == "txt"){
+          const txtArticle = await getTxt(stat + ".txt");
+          await openTxtArticle(txtArticle);
+          octo.classList.add('hide');
+    }   
   }
 }
 function loadData(name){
@@ -581,12 +608,14 @@ function initSwipe(){
       artSwiper2.autoplay.start();});
 }
 
-
+async function openTxtArticle(txtArticle){
+  main.insertAdjacentHTML('beforeend', txtArticle);
+}
   
 
   
 async function init(){
-
+  //load article if open
   var stat = history.state;
   if(stat!=null){
   checkPage(stat.urlPath);
@@ -594,11 +623,12 @@ async function init(){
     openRelease(stat.urlPath,stat.num);
   }
   if (stat.e=='articles'){
-    openArticle(stat.urlPath,stat.num)
+    openArticle(stat.urlPath,stat.num,stat.type)
   }
   }
 
 
+  
 
 
   const dataIssues = await getData('./db/issues.json');
