@@ -778,7 +778,7 @@ body {
     width: 80%;   
 }
 .acard{
-    width: 30%;
+    width: 35%;
 }
 .link{
     margin-bottom: 7px;
@@ -797,9 +797,12 @@ body {
         padding-left: 0px;
         margin: auto;   
         margin-top: 0px; 
-        width: 103.3%;
+        width: 100%;
     }
     .vertical{
-        width: 103.3%;
+        width: 100%;
+    }
+    .top{
+        width: 98%;
     }
 }
