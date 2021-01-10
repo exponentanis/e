@@ -762,7 +762,10 @@ body {
         max-width: 320px;
     }
     .howto{
-        width: 300px;
+        width: 100%;
+    }
+    .about{
+        width: 100%;
     }
    .swiper-container{
        width: 102%;
