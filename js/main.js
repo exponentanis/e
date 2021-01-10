@@ -609,7 +609,10 @@ function initSwipe(){
 }
 
 async function openTxtArticle(txtArticle){
-  main.insertAdjacentHTML('beforeend', txtArticle);
+  var div = document.createElement('div');
+  var art = main.appendChild(div);
+  art.classList.add("pdf-articles");
+  art.insertAdjacentHTML('beforeend', txtArticle);
 }
   
 

@@ -9,6 +9,9 @@ body {
     margin: auto;
     max-width: 875px;
 }
+.imaga{
+    width: 100%;
+}
 .page-magazine{
      width: 130%;
     }
