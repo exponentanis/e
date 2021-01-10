@@ -239,6 +239,8 @@ function clearPdf(){
       }
   }
 function hideAll(){
+  const podcamul = document.getElementById('podcamul');
+  const podca = document.getElementById('.podca');
   podca.classList.add('hide');
   news.classList.add('hide');
   releases.classList.add('hide');
