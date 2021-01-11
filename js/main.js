@@ -32,8 +32,8 @@ const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
-const podcamul = document.querySelector('.podcamul');
-const podca = document.querySelector('.podca');
+var podcamul = document.getElementById('podcamul');
+var podca = document.getElementById('podca');
 
 
 
@@ -239,8 +239,11 @@ function clearPdf(){
       }
   }
 function hideAll(){
-  const podcamul = document.querySelector('.podcamul');
-  const podca = document.querySelector('.podca');
+
+   podcamul = document.getElementById('podcamul');
+   podca = document.getElementById('podca');
+  console.log(podca);
+  console.log(podcamul);
   podca.classList.add('hide');
   news.classList.add('hide');
   releases.classList.add('hide');
@@ -314,6 +317,8 @@ function changePage(event, ind){
     switch(clas){
       case 'main':
         hideAll();
+         podcamul = document.getElementById('podcamul');
+         podca = document.getElementById('podca');
         podcamul.classList.add('hide');
         podca.classList.remove('hide');
         news.classList.remove('hide');
@@ -711,10 +716,7 @@ async function init(podcamul,podca){
   initSwipe();
 }
 
-window.onload = function () {
-  const podcamul = document.querySelector('.podcamul');
-  const podca = document.querySelector('.podca');
-  init(podcamul,podca);
-};
+
+init(podcamul,podca);
 
 
