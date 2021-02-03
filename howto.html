@@ -46,7 +46,7 @@
             
             <div class="top ">
                 <div class="menub menu-center" >
-                    <button class="button button-main locked-button" >
+                    <button class="button button-main " >
                         <span class="button-text">Главная</span>
                     </button>
                     <button class="button button-about"id="ba">
@@ -58,7 +58,7 @@
                     <button class="button button-archive"id="br">
                         <span class="button-text">Архив статей</span>
                     </button>
-                    <button class="button button-howto"id="bh">
+                    <button class="button button-howto locked-button"id="bh">
                         <span class="button-text">Как оформлять статьи</span>
                     </button>
                     <a href="mailto:exponenta.magazine@gmail.com?subject=Публикация статьи (укажите название статьи)
@@ -67,7 +67,7 @@
                         <span class="button-text">Предложить статью</span>
                     </a>
                 </div>
-                <div class="news space-bottom news-swiper ">
+                <div class="news space-bottom news-swiper hide">
                         <div class="swiper-wrapper">
                         </div>
                 </div>
@@ -111,7 +111,7 @@
                     в свою очередь, публикует работы, которые не смогли войти в журнал.
                     </span>
                 </div>
-                <div class="about-text howto space-bottom hide">
+                <div class="about-text howto space-bottom ">
                     <div class="mid-text">
                           <h3/>Правила оформления статей</h3>
                     </div> 
@@ -162,15 +162,17 @@
     <div class="container">
 
         <div class="main ">
-
-            <div class="scroll space-bottom releases">
+            <label class="search hide">
+                <input type="text" class="input input-search" placeholder="Найти статью"/>
+            </label>
+            <div class="scroll space-bottom releases hide">
                 <div class="middle-text text-space">Последние выпуски:</div>
                 <div class="swiper-container sw1">
                         <div class="swiper-wrapper">
                         </div>
                 </div>
             </div>
-            <div class="scroll space-bottom articles">
+            <div class="scroll space-bottom articles hide">
                 <div class="middle-text text-space">Интересные статьи:</div>
                 <div class="swiper-container sw2">
                         <div class="swiper-wrapper"> 
@@ -181,13 +183,18 @@
             </div>
 
             <img src="img/octo.gif" alt="octo" class="octo hide">
+            
+            <div class="cacti hide space-bottom" >
+                <div class=" about-text text-space" style="margin-left: 15%;margin-right: 15%; margin-bottom: 15px;"><h2>Статей по вашему запросу не найдено.</h2></div>
+                <img src="img/cacti.gif" alt="cacti" class="cactimage" >
+            </div>
 
             <a href="index.html" class="button return-button  hide" style="margin-top: 10px;">
                 <span class="button-text">Вернуться на главную</span>
             </a>
         </div>
     </div>  
-    <div class="scroll podca" id="podca" style="margin-bottom: 50px; ">
+    <div class="scroll podca hide" id="podca" style="margin-bottom: 50px; ">
                 <div>
                     <div class="middle-text text-space">Последний подкаст:</div>
                     <div class="podcast" id='buzzsprout-player-1440250'></div>

@@ -11,7 +11,7 @@ const sw2 = document.querySelector('.sw2');
 
 
 const main = document.querySelector('.main');
-const menub = document.querySelector('.menub');
+const menub = document.querySelector('.menu-center');
 const button = document.querySelector('.button');
 const buttons = document.querySelectorAll('.button');
 
@@ -32,6 +32,8 @@ const articleCCdo = articleList.querySelectorAll('.img-card');
 const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
+const inputSearch = document.querySelector('.input-search');
+const cacti = document.querySelector('.cacti');
 var podcamul = document.getElementById('podcamul');
 var podca = document.getElementById('podca');
 
@@ -40,7 +42,7 @@ var podca = document.getElementById('podca');
 
 
 let pdfArticle = document.querySelector(".pdf-articles");
-let clicked = button;
+let clicked = document.querySelector('.locked-button');
 let clickbuff = button;
 var art = null;
 var stat = null;
@@ -141,6 +143,54 @@ async function createArticles(article, i){
   articlesCards.insertAdjacentHTML('beforeend', card);
   }
 }
+
+async function forSearch(data){
+  var div = document.createElement('div');
+  var art = main.appendChild(div);
+  art.classList.add("searchRes");
+  data.forEach(function callback(value, iter){
+    createSearch(value, art);
+  });
+}
+
+async function createSearch(article, art){
+  const {type, name, number} = article;
+
+
+  const card = `
+  <section class="swiper-slide card forsearch" data-info = "${name}" data-number = "${number}" data-type = "${type}">
+    <div class="card-container forcon">
+        <img src="preview_img/articles/${name}-1.jpg" alt="logo" class="img-card getimg" >
+        <div class="info">
+          <div class="rating like"> 
+                <img src="img/like.png" alt="like" class="img-rating" style="padding-right: 0px;">
+          </div>
+          <div class="info-text titletxt">${name}</div>
+          <div class="rating dislike">
+              <img src="img/dislike.png" alt="like" class="img-rating"style="padding-right: 0px;">
+          </div>    
+        </div>
+  </div>
+  </section> 
+  `;
+  async function crlist(){
+    art.insertAdjacentHTML('beforeend', card);    
+    const aca = document.querySelectorAll(".forsearch");
+    aca.forEach(function(item){
+      item.classList.add("acard");
+      item.classList.remove("swiper-slide");
+    });
+
+    const cont = document.querySelectorAll('.forcon');
+    cont.forEach(function(cont){
+      cont.classList.remove("card-container");
+      const inText = cont.querySelector('.titletxt');
+      inText.classList.add("tinner");
+    });
+  }
+  await crlist();
+}
+
 async function forDataNews(data){
   data.forEach(function callback(value, iter){
     createNews(value, iter);
@@ -162,75 +212,14 @@ function createNews(news){
   `;
   newsCards.insertAdjacentHTML('beforeend', card);
 }
-//fuck yeaaaaaaaaaaaaaaaaaaah!
-function renderPdfArticle(url, canvasContainer){
-    console.log('strart render');
-    async function renderPage(page, width){
-            console.log(width);
-            if(width<500){
-              	var viewport = page.getViewport(4*width / (page.getViewport(1.0).width));
-            }
-            else{
-                 var viewport = page.getViewport(width / (page.getViewport(1.0).width));
-            }
-            var canvas = document.createElement('canvas');
-            var child = art.appendChild(canvas);
-            child.classList.add("page");
-            var context = canvas.getContext("2d");
 
-            var renderContext = {
-                      canvasContext: context,
-                      viewport: viewport
-            };
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-            if(width<500){
-              canvas.style.width = Math.floor(viewport.width/5) + 'pt';
-            }
-            else{
-              if(width<900){
-                canvas.style.width = Math.floor(viewport.width) + 'pt';
-             }
-             else{
-              canvas.style.width = Math.floor(4*viewport.width/5) + 'pt';
-             }
-            }
-            page.render(renderContext);         
-    }
-    pdfjsLib.disableWorker = true;
 
-    var div = document.createElement('div');
-    art = canvasContainer.appendChild(div);
-    art.classList.add("pdf-articles");
-    console.log('set page');
-    pdfjsLib.getDocument(url).then(async function(doc){  
-          console.log('continue render');  
-          var num = doc._pdfInfo.numPages+1;          
-          var positionInfo = art.getBoundingClientRect();
-          var width =  positionInfo.width;
-          async function loop(doc){
-            for (var i=1;i<num;i++){
-                  await doc.getPage(i).then( async function(page){
-                  await renderPage(page, width);
-                  });
-                  if(i<=2){
-                    window.scrollTo(0, 0);
-                  }
-                  if(i==num-1){
-                    octo.classList.add('hide');
-                  }
-                  let pdfArticle = document.querySelector(".pdf-articles");
-                  if (!pdfArticle){
-                    octo.classList.add('hide');
-                    break;
-                  }
-              }
-          }
-          loop(doc);
-
-           
-      })
+function clearSearchRes(){
+  let Search = document.querySelector(".searchRes");
+  if (Search){
+    Search.parentNode.removeChild(Search);
   }
+}
 
 function clearPdf(){
       let pdfArticle = document.querySelector(".pdf-articles");
@@ -242,8 +231,6 @@ function hideAll(){
 
    podcamul = document.getElementById('podcamul');
    podca = document.getElementById('podca');
-  console.log(podca);
-  console.log(podcamul);
   podca.classList.add('hide');
   news.classList.add('hide');
   releases.classList.add('hide');
@@ -258,6 +245,9 @@ function hideAll(){
   octo.classList.add('hide');
   topp.classList.remove('tophowto');
   podcamul.classList.add('hide');
+  inputSearch.classList.add('hide');
+  cacti.classList.add('hide');
+  inputSearch.value = '';
   try{
     clicked.classList.remove("locked-button");}
     catch(err){}
@@ -265,6 +255,7 @@ function hideAll(){
     button.classList.remove("locked-button");}
     catch(err){}
   clearPdf();
+  clearSearchRes();
 }
 
 
@@ -324,6 +315,7 @@ function changePage(event, ind){
         news.classList.remove('hide');
         releases.classList.remove('hide');
         articles.classList.remove('hide');
+        inputSearch.classList.remove('hide');
         button.classList.add("locked-button");
         clickbuff = button;
         initSwipe();
@@ -349,6 +341,7 @@ function changePage(event, ind){
       case 'archive':
         hideAll();
         articleList.classList.remove('hide');
+        inputSearch.classList.remove('hide');
         menub.classList.add('vertical');
         menub.classList.remove('menub');
         try{
@@ -406,7 +399,9 @@ function changePage(event, ind){
         clickbuff = bp;
         clicked = bp;
     }
+    window.scrollTo(0,0);
   }
+    
 
 async function openIssueJPG(inf, num, canvasContainer, article){
   console.log(inf);  
@@ -627,8 +622,82 @@ async function openTxtArticle(txtArticle){
 }
   
 
+function search(val){
+  const articles = [];
+  var st = null;
+  var value = null;
+  if (val){
+    st = val;
+    value = val.toLowerCase().trim();
+  }
+  else{
+    st = inputSearch.value;
+    value = inputSearch.value.toLowerCase().trim();
+  }
+
+  if (!value){
+    return;
+  }
+
+  getData('./db/articles.json')
+  .then(function(data){
+    //теееееееема
+    articles.push(...data);
+    const searchArticles = articles.filter(function(item){
+      return item.name.toLowerCase().includes(value)
+    });
+
+    //hide
+    hideAll();
+    inputSearch.value = st;
+    menub.classList.remove('menub');
+    menub.classList.add('vertical');
+    inputSearch.classList.remove('hide');
+    button.classList.remove("locked-button");
+    clicked = null;
+    window.history.pushState({urlPath: `search/${value}`, search: value }, "", `?search=${value}`);
+            return searchArticles
+  })
+  .then(async function(data){
+    console.log(data);
+    if (data.length==0){
+      cacti.classList.remove('hide');
+    }
+    else{
+      await forSearch(data);
+
+      const card = document.querySelectorAll('.img-card');
+      card.forEach(function(item){
+        loadData(item);
+        item.addEventListener("click", openArticle);
+      });
+      const rati = document.querySelectorAll('.rating');
+      rati.forEach(function(item){
+        item.addEventListener("click", setRate);
+      });
+
+
+      const artic = document.querySelectorAll('.forsearch');  
+      const cardNum = artic.length;
+      if (cardNum%4!=0){
+      for(var i=0; i<4-cardNum%4; i++){
+        const addcard = document.createElement('div');
+        addcard.className = 'transparent';
+        addcard.insertAdjacentHTML('beforeend', `
+        <div class="acard ">
+    
+        </div> 
+        `);
+        const search = document.querySelector('.searchRes');
+        search.insertAdjacentElement('beforeend', addcard);
+      }
+      }
+  }
+  })
+}
   
-async function init(podcamul,podca){
+async function init(){
+  
   //load article if open
   var stat = history.state;
   if(stat!=null){
@@ -639,11 +708,10 @@ async function init(podcamul,podca){
   if (stat.e=='articles'){
     openArticle(stat.urlPath,stat.num,stat.type)
   }
+  if (stat.search){
+    search(stat.search);
+  } 
   }
-
-
-  
-
 
   const dataIssues = await getData('./db/issues.json');
   await forDataIssues(dataIssues);
@@ -663,7 +731,7 @@ async function init(podcamul,podca){
   //prevent neporadok
   const articleCCdo = articleList.querySelectorAll('.img-card');  
   const cardNum = articleCCdo.length;
-  if (cardNum %4 !=0){
+  if (cardNum %4!=0){
   for(var i=0; i<4-cardNum%4; i++){
     const addcard = document.createElement('div');
     addcard.className = 'transparent';
@@ -707,9 +775,21 @@ async function init(podcamul,podca){
         openRelease(stat.urlPath,stat.num);
       }
       if (stat.e=='articles'){
-        openArticle(stat.urlPath,stat.num)
+        location.reload();
+      }
+      if (stat.search){
+        location.reload();
       }
       }
+  });
+
+// поооиск
+  inputSearch.addEventListener('keydown', function(event){
+    if (event.keyCode === 13){
+      //inputSearch.value  OR
+      search();
+    }
+    
   });
 
 
@@ -717,6 +797,6 @@ async function init(podcamul,podca){
 }
 
 
-init(podcamul,podca);
+init();
 
 

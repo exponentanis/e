@@ -44,10 +44,10 @@
                                     <span class="button-text">Главная</span>
                                 </button>
                                 <button class="button button-about"id="ba">
-                                    <span class="button-text">О нас</span>     
+                                    <span class="button-text">О нас</span>    
+                                </button>
                                 <button class="button button-podcasts"id="bp">
                                     <span class="button-text">Подкасты</span>
-                                </button>
                                 </button>
                                 <button class="button button-archive"id="br">
                                     <span class="button-text">Архив статей</span>
@@ -171,13 +171,11 @@
     <div class="container">
 
         <div class="main ">
-            <div class="scroll space-bottom releases">
-                <div class="middle-text text-space">Последние выпуски:</div>
-                <div class="swiper-container sw1">
-                        <div class="swiper-wrapper">
-                        </div>
-                </div>
-            </div>
+
+            <label class="search">
+                <input type="text" class="input input-search" placeholder="Найти статью"/>
+            </label>
+
             <div class="scroll space-bottom articles">
                 <div class="middle-text text-space">Интересные статьи:</div>
                 <div class="swiper-container sw2">
@@ -185,10 +183,25 @@
                         </div>
                 </div>
             </div>
+            
+            <div class="scroll space-bottom releases">
+                <div class="middle-text text-space">Последние выпуски:</div>
+                <div class="swiper-container sw1">
+                        <div class="swiper-wrapper">
+                        </div>
+                </div>
+            </div>
+            
             <div class="article-list hide">
             </div>
 
             <img src="img/octo.gif" alt="octo" class="octo hide">
+
+            <div class="cacti hide space-bottom" >
+                <div class=" about-text text-space" style="margin-left: 15%;margin-right: 15%; margin-bottom: 15px;"><h2>Статей по вашему запросу не найдено.</h2></div>
+                <img src="img/cacti.gif" alt="cacti" class="cactimage" >
+            </div>
+            
 
             <a href="index.html" class="button return-button  hide" style="margin-top: 10px;">
                 <span class="button-text">Вернуться на главную</span>
@@ -237,6 +250,7 @@
                 </div>
             </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.4.456/build/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
     <script src="https://unpkg.com/swiper@5.4.5/js/swiper.min.js"></script>
