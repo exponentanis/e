@@ -605,6 +605,10 @@ body {
     }
 }
 @media(max-width: 578px){ 
+    .top{
+        width: 100%;
+    }
+    
     .input {
         padding-top:4px;
         padding-bottom:4px;
@@ -888,7 +892,7 @@ body {
         width: 100%;
     }
    .swiper-container{
-       width: 102%;
+       width: 100%;
    }
 .container{
     width: 100%;
