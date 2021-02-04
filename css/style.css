@@ -592,7 +592,7 @@ body {
         display: flex;
         align-items: start;
         flex-direction: row;
-        width: 110%;
+        width: 100%;
     }
     .top{   
         display: flex;
