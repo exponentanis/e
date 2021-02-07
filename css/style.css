@@ -196,7 +196,6 @@ body {
     justify-content: flex-end;
 }
 .about-text{
-    text-align: center; 
     overflow-wrap: break-word;
     cursor: default;
     font-family: Roboto;
@@ -204,6 +203,9 @@ body {
     font-size: 20px;
     line-height: 32px;
     color: #C4C4C4;
+}
+.cacti-text{
+    text-align: center;
 }
 .mid-text{
     text-align: center; 
