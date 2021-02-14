@@ -261,16 +261,40 @@ function hideAll(){
 
 function checkPage(stat){
   if(stat==null){
+
+    var alrt = 0;
+    var ind = null;
     var searchString = window.location.search.substring(1),
     i, val, params = searchString.split("&");
     for (i=0;i<params.length;i++) {
       val = params[i].split("=");
       if (val[0] == "e") {
         var ind =  val[1];
+      }    
+      if (val[0] == "issue") {
+        var ind =  val[1];
+        alrt = 1;
       }
-      else{
-        var ind =  null; 
+      if (val[0] == "article") {
+        var ind =  val[1];
+        alrt = 2;
       }
+      if (val[0] == "num") {
+        var num =  val[1];  
+      }  
+      if (val[0] == "typ") {     
+        var typ =  val[1]; 
+      }   
+
+
+    }
+    switch(alrt){
+      case 1:
+        openRelease(`pdfs/issues/${ind}/${ind}-`,num);
+        break;
+      case 2:
+        openArticle(`pdfs/articles/${ind}/${ind}`,num,typ);
+        break;
     }
 
     changePage(null, ind);
@@ -404,7 +428,7 @@ function changePage(event, ind){
     
 
 async function openIssueJPG(inf, num, canvasContainer, article){
-  console.log(inf);  
+   
   var div = document.createElement('div');
   var art = canvasContainer.appendChild(div);
   art.classList.add("pdf-articles");
@@ -427,7 +451,6 @@ async function openIssueJPG(inf, num, canvasContainer, article){
     <img src="${inf}${b}.jpg" alt="page" class="page-magazine">
     `;
 
-    
     art.insertAdjacentHTML('beforeend', page);
     if(i==num-1){
       octo.classList.add('hide');
@@ -442,8 +465,8 @@ async function openRelease(stat,num){
   menub.classList.remove('menub');
 
   try{
-    clicked.classList.remove("locked-button");}
-  catch(err){}
+    clicked.classList.remove("locked-button");
+  } catch(err){}
 
   returnButton.classList.remove('hide');
   clicked = null;
@@ -457,14 +480,13 @@ async function openRelease(stat,num){
   const number = card.dataset.number;
   //renderPdfArticle(`./pdfs/issues/${info}.pdf`, main);
   openIssueJPG(`pdfs/issues/${info}/${info}-`, number,  main, 0);
-  window.history.pushState({urlPath: `pdfs/issues/${info}/${info}-`, num: number, e: "issues"}, "", `?issue=${info}`);
+  window.history.pushState({urlPath: `pdfs/issues/${info}/${info}-`, num: number, e: "issues"}, "", `?issue=${info}&num=${number}`);
   }
   else{
     openIssueJPG(stat, num,  main, 0);
   }
 }
 async function openArticle(stat,num,typ){
-
   hideAll();
   menub.classList.add('vertical');
   menub.classList.remove('menub');
@@ -484,7 +506,7 @@ async function openArticle(stat,num,typ){
     const type = card.dataset.type;
     const info = card.dataset.info;
     const number = card.dataset.number;
-    console.log(type);
+    
     if(type=="pdf"){
       console.log("pdf")
       //renderPdfArticle(`./pdfs/articles/${info}.pdf`);
@@ -498,10 +520,9 @@ async function openArticle(stat,num,typ){
       octo.classList.add('hide');
     }
 
-    window.history.pushState({urlPath: `pdfs/articles/${info}/${info}`, num: number, e: "articles", type: type }, "", `?article=${info}`);
+    window.history.pushState({urlPath: `pdfs/articles/${info}/${info}`, num: number, e: "articles", type: type }, "", `?article=${info}&num=${number}&typ=${type}`);
   }
   else{
-    console.log(stat, num);
     if (typ == "pdf"){
           openIssueJPG(stat + "-", num,  main, 1);
         }
@@ -697,9 +718,15 @@ function search(val){
 }
   
 async function init(){
-  
   //load article if open
+  var searchString = window.location.search.substring(1),
+    i, val, params = searchString.split("&");
+
+
   var stat = history.state;
+  if(searchString!=""){
+    checkPage(stat);
+  }
   if(stat!=null){
   checkPage(stat.urlPath);
   if (stat.e=='issues'){
