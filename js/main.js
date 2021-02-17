@@ -38,7 +38,6 @@ const searc = document.querySelector('.search');
 const cacti = document.querySelector('.cacti');
 var podcamul = document.getElementById('podcamul');
 var podca = document.getElementById('podca');
-const me = document.querySelector(".me");
 
 const bb = document.querySelector('.button-offer');
 
@@ -249,10 +248,8 @@ function hideAll(){
   podcamul.classList.add('hide');
   searc.classList.add('hide');
   cacti.classList.add('hide');
-  me.classList.add('hide');
 
   button.classList.add('longbut');
-  b.classList.add('longbut');
   bp.classList.add('longbut');
   br.classList.add('longbut');
   ba.classList.add('longbut');
@@ -338,7 +335,6 @@ function changePage(event, ind){
           const bh = document.getElementById("bh");
           const br = document.getElementById("br");
           const bp = document.getElementById("bp");
-          const b = document.getElementById("b");
           clas = ind;
           var ind = null;
     }
@@ -359,17 +355,6 @@ function changePage(event, ind){
         initSwipe();
         window.history.pushState({urlPath: 'main'}, "", '/e/index.html');
         break;
-     case 'me':
-          hideAll();
-          me.classList.remove('hide');
-          try{
-            clicked.classList.remove("locked-button");}
-            catch(err){}
-          b.classList.add("locked-button");
-          window.history.pushState({urlPath: 'me'}, "", '/e/me.html');
-          clickbuff = b;
-          clicked = b;
-          break; 
       case 'about':
         hideAll();
         menub.classList.remove('menu-center');
@@ -387,7 +372,6 @@ function changePage(event, ind){
         hideAll();
 
         button.classList.remove('longbut');
-        b.classList.remove('longbut');
         bp.classList.remove('longbut');
         br.classList.remove('longbut');
         ba.classList.remove('longbut');
@@ -446,7 +430,6 @@ function changePage(event, ind){
         hideAll();
 
         button.classList.remove('longbut');
-        b.classList.remove('longbut');
         bp.classList.remove('longbut');
         br.classList.remove('longbut');
         ba.classList.remove('longbut');
