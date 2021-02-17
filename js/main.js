@@ -33,12 +33,14 @@ const pdfArticles = document.getElementById("pdf-articles");
 const returnButton = document.querySelector(".return-button");
 const rating = document.querySelectorAll('.rating');
 const inputSearch = document.querySelector('.input-search');
+
+const searc = document.querySelector('.search');
 const cacti = document.querySelector('.cacti');
 var podcamul = document.getElementById('podcamul');
 var podca = document.getElementById('podca');
+const me = document.querySelector(".me");
 
-
-
+const bb = document.querySelector('.button-offer');
 
 
 let pdfArticle = document.querySelector(".pdf-articles");
@@ -245,8 +247,19 @@ function hideAll(){
   octo.classList.add('hide');
   topp.classList.remove('tophowto');
   podcamul.classList.add('hide');
-  inputSearch.classList.add('hide');
+  searc.classList.add('hide');
   cacti.classList.add('hide');
+  me.classList.add('hide');
+
+  button.classList.add('longbut');
+  b.classList.add('longbut');
+  bp.classList.add('longbut');
+  br.classList.add('longbut');
+  ba.classList.add('longbut');
+  bp.classList.add('longbut');
+  bb.classList.add('longbut');
+  bh.classList.add('longbut');
+
   inputSearch.value = '';
   try{
     clicked.classList.remove("locked-button");}
@@ -325,6 +338,7 @@ function changePage(event, ind){
           const bh = document.getElementById("bh");
           const br = document.getElementById("br");
           const bp = document.getElementById("bp");
+          const b = document.getElementById("b");
           clas = ind;
           var ind = null;
     }
@@ -339,12 +353,23 @@ function changePage(event, ind){
         news.classList.remove('hide');
         releases.classList.remove('hide');
         articles.classList.remove('hide');
-        inputSearch.classList.remove('hide');
+        searc.classList.remove('hide');
         button.classList.add("locked-button");
         clickbuff = button;
         initSwipe();
         window.history.pushState({urlPath: 'main'}, "", '/e/index.html');
         break;
+     case 'me':
+          hideAll();
+          me.classList.remove('hide');
+          try{
+            clicked.classList.remove("locked-button");}
+            catch(err){}
+          b.classList.add("locked-button");
+          window.history.pushState({urlPath: 'me'}, "", '/e/me.html');
+          clickbuff = b;
+          clicked = b;
+          break; 
       case 'about':
         hideAll();
         menub.classList.remove('menu-center');
@@ -358,14 +383,20 @@ function changePage(event, ind){
         clicked = ba;
         window.history.pushState({urlPath: 'about'}, "", '/e/about.html');
         break;
-      case 'news':
-        news.classList.remove('hide');
-        initSwipe();
-        break;  
       case 'archive':
         hideAll();
+
+        button.classList.remove('longbut');
+        b.classList.remove('longbut');
+        bp.classList.remove('longbut');
+        br.classList.remove('longbut');
+        ba.classList.remove('longbut');
+        bp.classList.remove('longbut');
+        bb.classList.remove('longbut');
+        bh.classList.remove('longbut');
+
         articleList.classList.remove('hide');
-        inputSearch.classList.remove('hide');
+        searc.classList.remove('hide');
         menub.classList.add('vertical');
         menub.classList.remove('menub');
         try{
@@ -391,6 +422,7 @@ function changePage(event, ind){
         break;  
       case 'offer':
         changePage(null, ind);
+        location.href = "mailto:exponenta.magazine@gmail.com?subject=Публикация статьи (укажите название статьи)&body= Уважаемая редакция журнала “Exponenta”,%0A Прошу рассмотреть к публикации статью (укажите название статьи) (укажите имена авторов статьи).";
         setTimeout(function() {
           clicked.classList.remove("locked-button");
           clicked = clickbuff;
@@ -412,6 +444,16 @@ function changePage(event, ind){
         break;
       case 'podcasts':
         hideAll();
+
+        button.classList.remove('longbut');
+        b.classList.remove('longbut');
+        bp.classList.remove('longbut');
+        br.classList.remove('longbut');
+        ba.classList.remove('longbut');
+        bp.classList.remove('longbut');
+        bb.classList.remove('longbut');
+        bh.classList.remove('longbut');
+
         menub.classList.add('vertical');
         menub.classList.remove('menub');
         podcamul.classList.remove('hide');

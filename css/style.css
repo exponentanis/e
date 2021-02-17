@@ -96,7 +96,6 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     width: 104%;
-    margin-left: 1%;
 }
 .tophowto{
         width: 100%;
@@ -126,7 +125,6 @@ body {
 
 .button{
     display: flex;
-    align-items: center;
     cursor: pointer;
     outline: none;
     background: #FF0038;
@@ -136,6 +134,10 @@ body {
     border-radius: 10px;
     padding: 5px 5px;
     text-decoration: blink;
+    
+}
+.longbut{
+    width: 177px;
 }
 .locked-button{
     cursor: default;
@@ -143,6 +145,7 @@ body {
     border: 2px solid #FF0038;
 }
 .button-text{
+    
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -425,7 +428,7 @@ body {
 
 }
 @media(max-width: 1100px){
-    
+
     .podca{
         margin: auto;
         max-width: 775px;
@@ -444,6 +447,12 @@ body {
 
 
 @media(max-width: 992px){
+    .longbut{
+        width:170px;
+    }
+    .swiper-container{
+        width: 100%;
+    }
     .input {
         font-size: 14px;
         line-height: 15px;
@@ -525,6 +534,9 @@ body {
     }
 }
 @media(max-width: 768px){
+    .longbut{
+        width:initial;
+    }
     .input {
         font-size: 13px;
         line-height: 15px;
@@ -897,9 +909,7 @@ body {
     .about{
         width: 100%;
     }
-   .swiper-container{
-       width: 100%;
-   }
+
 .container{
     width: 100%;
     margin-left: 0px;
