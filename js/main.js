@@ -866,7 +866,12 @@ async function init(){
     }
     
   });
-
+  try{
+    const x = document.querySelector(".pdf-articles").childNodes[1].childNodes[0];
+    x.classList.add('articleName');
+    }catch(error){
+      console.log("я снова здесь");
+    }
 
   initSwipe();
 }
