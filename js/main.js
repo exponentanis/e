@@ -559,6 +559,8 @@ async function openArticle(stat,num,typ){
       console.log("txt")
       const txtArticle = await getTxt(`pdfs/articles/${info}/${info}.txt`);
       await openTxtArticle(txtArticle);
+      const x = document.querySelector(".pdf-articles").childNodes[1].childNodes[0];
+      x.classList.add('articleName');
       window.scrollTo(0, 0);
       octo.classList.add('hide');
     }
@@ -782,6 +784,9 @@ async function init(){
     search(stat.search);
   } 
   }
+
+
+
 
   const dataIssues = await getData('./db/issues.json');
   await forDataIssues(dataIssues);

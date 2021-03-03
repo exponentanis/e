@@ -16,6 +16,7 @@ body {
     width: 300px;
 }
 
+
 .search {
 
     margin-right: auto;
@@ -207,6 +208,11 @@ body {
     line-height: 32px;
     color: #C4C4C4;
 }
+.articleName{
+    font-size: 40px;
+    line-height: 42px;
+}
+
 .cacti-text{
     text-align: center;
     
@@ -428,7 +434,10 @@ body {
 
 }
 @media(max-width: 1100px){
-
+    .articleName{
+        font-size: 35px;
+        line-height: 35px;
+    }
     .podca{
         margin: auto;
         max-width: 775px;
@@ -447,6 +456,10 @@ body {
 
 
 @media(max-width: 992px){
+    .articleName{
+        font-size: 30px;
+        line-height: 32px;
+    }
     .longbut{
         width:170px;
     }
@@ -534,6 +547,10 @@ body {
     }
 }
 @media(max-width: 768px){
+    .articleName{
+        font-size: 25px;
+        line-height: 32px;
+    }
     .longbut{
         width:initial;
     }
@@ -626,7 +643,10 @@ body {
     .top{
         width: 100%;
     }
-    
+    .articleName{
+        font-size: 18px;
+        line-height: 18px;
+    }
     .input {
         padding-top:4px;
         padding-bottom:4px;
@@ -724,6 +744,10 @@ body {
 
 }
 @media(max-width: 480px){
+    .articleName{
+        font-size: 18px;
+        line-height: 15px;
+    }
     .cacti{
         margin-left: 0%;
         margin-right: 0%;
